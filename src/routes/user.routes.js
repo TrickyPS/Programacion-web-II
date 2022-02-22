@@ -8,5 +8,5 @@ router.get("/",getAll);
 router.post("/",logUp);
 router.post("/login",logIn);
 router.get("/:id",getOne);
-
+router.post("/add",addImage)
 module.exports = router;

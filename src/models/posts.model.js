@@ -23,7 +23,10 @@ reactions:[{
     type: Types.ObjectId,
     ref:"reactions",
 
-}]
+}],images:[{
+    type: Types.ObjectId,
+    ref:"images",
+}],
 }, {
     versionKey: false,
     timestamps: true,
