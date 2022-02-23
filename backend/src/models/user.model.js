@@ -25,8 +25,9 @@ const user = new Schema(
       required: false,
     },
     usertype: {
-      type: Int16Array,
+      type: Number,
       required: true,
+      default:0
     },
     notifications: [{
         type: Types.ObjectId,
@@ -34,8 +35,12 @@ const user = new Schema(
     }],
     favorites:[{
         type:Types.ObjectId,
-        ref:"favorite"
+        ref:"posts"
     }],
+    redes:[{
+      type:Types.ObjectId,
+      ref:"redes"
+    }]
   },
   {
     versionKey: false,
@@ -45,7 +50,7 @@ const user = new Schema(
 user.methods.coderPassword = async function  (){
     this.password =  await coder.hash(this.password,10);
 }
-user.methods.comparepass = async function (password){
+user.methods.comparePassword = async function (password){
 return await coder.compare(password,this.password);
 }
 module.exports = model("user", user);

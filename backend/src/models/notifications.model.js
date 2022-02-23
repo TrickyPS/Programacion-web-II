@@ -4,7 +4,7 @@ const {
     Types
 } = require("mongoose");
 const notifications = new Schema({
-    seenornot: {
+    seen: {
         type: Boolean,
     },
     textnotification: [{
@@ -12,7 +12,7 @@ const notifications = new Schema({
     }],
     user: {
         type: Types.ObjectId,
-        ref = "user"
+        ref : "user"
     }
 }, {
     versionKey: false,

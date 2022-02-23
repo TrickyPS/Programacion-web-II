@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express();
-const {userRoutes,noticiasRoutes,postsRoutes} = require("./routes")
+const {userRoutes} = require("./routes")
 
 const cors = require("cors")
 
@@ -16,8 +16,7 @@ app.use(cors())
 
 //routes
 app.use("/api/user",userRoutes);
-app.use("/api/noticias",noticiasRoutes)
-app.use("/api/posts",postsRoutes)
+//app.use("/api/posts",postsRoutes)
 
 
 

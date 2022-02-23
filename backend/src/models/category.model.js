@@ -10,4 +10,4 @@ const category = new Schema({
     versionKey: false,
     timestamps: true,
   });
-module.exports = model("images", images);
+module.exports = model("category", category);
