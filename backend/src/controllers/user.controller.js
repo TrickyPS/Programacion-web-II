@@ -10,7 +10,7 @@ exports.getAll = async(req, res) => {
   }
 };
 
-exports.logUp = async (req, res) => {
+exports.signUp = async (req, res) => {
   try {
     const { body } = req;
     const newUser = new userModel(body)
@@ -29,7 +29,6 @@ exports.logIn = async(req, res) => {
     if(!email || !password)
         res.send({message:"Se debe enviar email y password"}).end()
         
-    
     const user = await userModel.findOne({email});
     if(!user)
         return res.send({message:"No existe el usuario"})
@@ -65,7 +64,7 @@ exports.deleteOne = async(req,res)=>{  // eliminar
         console.log(error);
         res.send({ message: error });
     }
-}
+};
 /*
 exports.delete2 = async(req,res)=>{ //baja logica
     try{
@@ -83,9 +82,9 @@ exports.update = async(req,res)=>{ //actualizar
         const {id} = req.params
         const body = req.body
         const user = await userModel.findOneAndUpdate({_id:id},body,{new:true})
-        res.send({data:user}).end()
+        res.send({data:user}).end();
     }catch(error){
         console.log(error);
         res.send({ message: error }).end();
     }
-}
+};
