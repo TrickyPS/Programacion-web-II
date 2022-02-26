@@ -1,4 +1,5 @@
 const {Router} = require("express")
+const {getUserNotifications, postUserNotifications} = require("./../controllers/notifications.controller");
 
 const router = Router();
 
