@@ -1,11 +1,10 @@
 const {Router} = require("express")
+const {addFavorite,getOne,deleteOne} = require("./../controllers/favorite.controller")
 
 const router = Router();
 
 router.post("/",addFavorite) //agrega post favorito a la tabla de  usuarios
-router.get("/:id",getAll) // id de usuario para obtener todos los favoritos
-
-//DEJA ESTE PENDIENTE
-router.delete("/:post/:user",deleteFavorite)// eliminado completo  
+// TODO: eliminar en la lista d eusuario
+router.delete("/:id",deleteOne);
 
 module.exports = router;

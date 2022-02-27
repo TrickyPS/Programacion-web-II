@@ -3,11 +3,13 @@ const {
     model,
     Types
 } = require("mongoose");
+
 const notifications = new Schema({
     seen: {
         type: Boolean,
+        default:false
     },
-    textnotification: [{
+    text: [{
         type: String,
     }],
     user: {

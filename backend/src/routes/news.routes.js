@@ -1,4 +1,5 @@
 const {Router} = require("express")
+const {addNews,getNews,getAllNews,updateNews,deleteNews} = require("./../controllers/news.controller")
 
 const router = Router();
 

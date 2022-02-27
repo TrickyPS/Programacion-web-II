@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const images = new Schema({
-  link: [
+  url: [
     {
       type: String,
     },

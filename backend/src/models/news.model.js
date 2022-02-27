@@ -7,8 +7,13 @@ const news = new Schema({
     type: String,
   },
   category: {
-    type: String,
+    type: Types.ObjectId,
+    ref:"category"
   },
+  status:{
+    type:Boolean,
+    default:true
+},
   images:[{
 type: Types.ObjectId,
 ref :"images"

@@ -1,10 +1,14 @@
 const { Schema, model } = require("mongoose");
 const category = new Schema({
-  name: [
+  name: 
     {
       type: String, unique:true
     },
-  ],
+    status:{
+      type:Boolean,
+      default:true
+  }
+  
 }
 ,{
     versionKey: false,

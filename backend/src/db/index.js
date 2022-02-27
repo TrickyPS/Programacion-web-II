@@ -1,8 +1,9 @@
-const {connect} = require("mongoose")
+const {connect} = require("mongoose");
+require("dotenv").config();
 
 const Connection = async()=>{
     try {
-        await connect("mongodb://localhost:27017/geekup")
+        await connect(process.env.DB_URI)
         console.log("DB connected")
     } catch (error) {
         console.log(error)

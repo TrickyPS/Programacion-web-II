@@ -2,8 +2,8 @@ const categoryModel = require("./../models/category.model");
 
 exports.addCategory = async(req, res) => {
     try{
-        const { body } = req;
-        const newCategory = new categoryModel(body);
+        const { name } = req.body;
+        const newCategory = new categoryModel({name});
         const category = await newCategory.save();
         res.send({data:category});
     } catch (error){

@@ -3,7 +3,7 @@ const { Schema, model,Types} = require("mongoose");
 const coder = require("bcryptjs");
 const user = new Schema(
   {
-    username: {
+    userName: {
       type: String,
       required: true,
     },
@@ -20,11 +20,15 @@ const user = new Schema(
         "Provide a valid email",
       ],
     },
+    status:{
+      type:Boolean,
+      default:true
+  },
     image: {
       type: String,
       required: false,
     },
-    usertype: {
+    userType: {
       type: Number,
       required: true,
       default:0
@@ -35,11 +39,11 @@ const user = new Schema(
     }],
     favorites:[{
         type:Types.ObjectId,
-        ref:"posts"
+        ref:"favorite"
     }],
-    redes:[{
+    stars:[{
       type:Types.ObjectId,
-      ref:"redes"
+      ref:"comments"
     }]
   },
   {
