@@ -8,5 +8,6 @@ module.exports = {
     categoryRoutes:require("./category.routes"),
     reactionsRoutes:require("./reactions.routes"),
     notificationsRoutes:require("./notifications.routes"),
+    reportsRoutes: require("./reports.routes")
     
 }

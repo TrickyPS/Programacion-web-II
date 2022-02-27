@@ -1,15 +1,15 @@
 exports.bestReactions=(req,res)=>{
-
+    res.send("Por implementar")
 }
 
-exports.bestComments=(req,res)=>{
-    
+exports.posts=(req,res)=>{
+    res.send("Por implementar")
 }
 
 exports.rank=(req,res)=>{
-    
+    res.send("Por implementar")
 }
 
 exports.topic=(req,res)=>{
-    
+    res.send("Por implementar")
 }
