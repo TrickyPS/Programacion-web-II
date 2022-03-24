@@ -1,3 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+.navItem {
+
+color: red;
+  }
+
+  .navbarcolor{
+    background-color: rgb(13, 80, 80);
+ 
+  }
+
+  .zoom {
+    
+   
+  }
+ 
+ 

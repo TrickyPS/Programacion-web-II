@@ -1,9 +1,12 @@
 import React from "react";
-
+import NavBar from "../components/Layout/NavBar";
+import Loginindex from "../components/Login/loginindex";
+import './Login.css'
 const Login = ()=>{
     return (
         <div>
-            Login
+             <NavBar></NavBar>
+    <Loginindex></Loginindex>
         </div>
     )
 }
