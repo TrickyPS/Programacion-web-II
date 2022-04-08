@@ -5,14 +5,15 @@ import { MdNotificationsActive } from 'react-icons/md';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaRocket } from 'react-icons/fa';
-import{ Offcanvas,Navbar,Nav,NavDropdown,Container,Form,FormControl,Button } from "react-bootstrap";
 import './Navbar.css';
+import imgLogo from "./../../assets/logo-blanco.png";
+
 const NavBar = ()=>{
     return ( 
       <nav className="navbar navbar-light bg-light  fixed-top backgroundcolor colorWhite " >   
    
       <div className="container-fluid texttypeBebas" > 
-         <a className="navbar-brand  colorWhite" href="#" style={{fontSize:"25px"}} >GeekUP</a>
+         <a className="navbar-brand  colorWhite" href="#" style={{fontSize:"25px"}} ><img src={imgLogo} width={110} alt="" /></a>
 
          <div className="perfil zoom  colorWhite   d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px",marginLeft:"20px"}}>
             
@@ -57,7 +58,7 @@ const NavBar = ()=>{
   
   
      
-        <a className="navbar-toggler colorWhite   d-xs-block  d-sm-block d-md-block d-lg-block zoom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <a className="navbar-toggler colorWhite   d-lg-none zoom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <GiHamburgerMenu  className="mb-1" style={{fontSize:"25px",color:"white"}} />
         </a>
         <div className="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
