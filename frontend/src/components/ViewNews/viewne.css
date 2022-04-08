@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300&display=swap');
+.zoom {
+
+    transition: transform .2s !important; /* Animation */
+
+  }
+    .scrollyc{
+    overflow-y:scroll;
+    overflow-x: hidden !important;
+    overflow: auto;
+ height: 810px;
+ 
+  }
+  ::-webkit-scrollbar {
+    display: none;
+}
+  .zoom:hover {
+    cursor:pointer;
+    z-index: 1 !important;
+    transform: scale(1.1) !important; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    
+  }
+  .backgroundcolor{
+
+    background-color: #131414 !important;
+    height:60px;
+  }
+  .backgroundcolorOff{
+    background-color: #131414 ;
+  }
+  .backgroundcolorOfftitle{
+    background-color:#131414  ;
+  }
+
+  .colorWhite{
+
+    color: rgb(236, 229, 229) !important;
+    
+  }
+  .buttonColorsNav{
+    background-color: #438194;
+  }
+
+  .texttypeBebas{
+    font-family: 'Bebas Neue', cursive;
+  }
+  
+  .texttypeLight300{
+    font-family: 'Oswald', sans-serif;
+  }
+  .borderblack{
+
+border: #131414;
+  }
+
+  .cont{
+  object-fit:cover;
+  }
+  .backImg{
+  object-fit: cover ;
+
+  background-color: #ffffff;
+  padding-right: 10px;
+  }
+
+  .colorbk{
+    background-color: #dfebeb;
+    }
+
+    .heigh{
+    
+     height: 100vh;
+    }
+ 
+    .inputwidh{
+
+
+    }
+    .textisize{
+    color: rgb(29, 27, 27);
+      font-size: 18px;
+    }
+    .paddingbot{
+      margin-bottom: 30px !important;
+    }
+    .buttonwidth{
+      width: 150px !important;
+    }
+    .textisizetitle{
+      color: rgb(29, 27, 27);
+        font-size: 20px;
+      }
+      .textisizetitleu{
+        font-size: 50px;
+      }
+
+      .heighh{
+          height: 100vh;
+      }
+
+      .backeditor{
+          background-color: rgb(255, 255, 255) !important;
+      }
+
+      
