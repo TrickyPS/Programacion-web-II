@@ -36,7 +36,8 @@ const Login = ()=>{
 
                
                    <div className="grupo text-center pt-3 ">
-                       <button type="sumbit" className="zoom btn btn-primary btn-md col-lg-8 col-md-5 col-sm-5 col-xs-4">Inicia sesion</button>
+                   <a class="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2"  type="button" style={{width:"300px",height:"35px"}}>Iniciar sesion</a>
+
                    </div>
 
 

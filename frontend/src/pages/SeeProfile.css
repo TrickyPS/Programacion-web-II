@@ -12,18 +12,10 @@
     transform: scale(1.1) !important; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     
   }
-  .backgroundcolor{
-
-    background-color: #131414 !important;
-    height:60px;
-  }
-  .backgroundcolorOff{
-    background-color: #131414 ;
-  }
-  .backgroundcolorOfftitle{
-    background-color:#131414  ;
-  }
-
+.backgroundc{
+  background-color: #438194;
+  height: 100vh;
+}
   .colorWhite{
 
     color: rgb(236, 229, 229) !important;
@@ -52,4 +44,3 @@ border: #131414;
   padding-right: 10px;
   }
 
- 

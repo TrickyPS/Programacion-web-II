@@ -5,7 +5,16 @@
     transition: transform .2s !important; /* Animation */
 
   }
-  
+    .scrollyca{
+    overflow-y:scroll;
+    overflow-x: hidden !important;
+    overflow: auto;
+ height: 750px;
+ 
+  }
+  ::-webkit-scrollbar {
+    display: none;
+}
   .zoom:hover {
     cursor:pointer;
     z-index: 1 !important;
@@ -19,7 +28,8 @@
     color: rgb(236, 229, 229) !important;
     
   }
-  
+
+
   .texttypeBebas{
     font-family: 'Bebas Neue', cursive;
   }
@@ -27,24 +37,18 @@
   .texttypeLight300{
     font-family: 'Oswald', sans-serif;
   }
-  .borderblack{
 
-border: #131414;
-  }
 
   .cont{
   object-fit:cover;
   }
-  .backImg{
-  object-fit: cover ;
+  .backImgs{
+  object-fit:contain;
+  height: 400px;
 
-  background-color: #ffffff;
-  padding-right: 10px;
   }
 
-  .colorbk{
-    background-color: #d0d8d8;
-    }
+
 
     .heigh{
     
@@ -58,9 +62,6 @@ border: #131414;
     .textisize{
     color: rgb(29, 27, 27);
       font-size: 18px;
-    }
-    .textisizecomcom{
-      font-size: 1px !important;
     }
     .paddingbot{
       margin-bottom: 30px !important;
@@ -76,50 +77,9 @@ border: #131414;
         font-size: 50px;
       }
 
- 
-      .backeditor{
-          background-color: rgb(0, 100, 105) !important;
+      .heighh{
+          height: 100vh;
       }
 
-
-
-      body {
-        background: #eee
-    }
-    
-    .date {
-        font-size: 11px
-    }
-    
-    .comment-text {
-        font-size: 12px
-    }
-    
-    .fs-12 {
-        font-size: 12px
-    }
-    
-    .shadow-none {
-        box-shadow: none
-    }
-    
-    .name {
-        color: #007bff
-    }
-    
-    .cursor:hover {
-        color: blue
-    }
-    
-    .cursor {
-        cursor: pointer
-    }
-    
-    .scrollycomments{
-       overflow-y: scroll;
-       overflow-y: hidden;
-    }
-
-    .paddingleft{
-      padding-left: 4rem;
-    }
+   
+      

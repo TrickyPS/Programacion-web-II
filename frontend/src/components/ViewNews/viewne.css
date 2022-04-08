@@ -5,21 +5,43 @@
     transition: transform .2s !important; /* Animation */
 
   }
-  
+    .scrollyc{
+    overflow-y:scroll;
+    overflow-x: hidden !important;
+    overflow: auto;
+ height: 810px;
+ 
+  }
+  ::-webkit-scrollbar {
+    display: none;
+}
   .zoom:hover {
     cursor:pointer;
     z-index: 1 !important;
     transform: scale(1.1) !important; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     
   }
+  .backgroundcolor{
 
+    background-color: #131414 !important;
+    height:60px;
+  }
+  .backgroundcolorOff{
+    background-color: #131414 ;
+  }
+  .backgroundcolorOfftitle{
+    background-color:#131414  ;
+  }
 
   .colorWhite{
 
     color: rgb(236, 229, 229) !important;
     
   }
-  
+  .buttonColorsNav{
+    background-color: #438194;
+  }
+
   .texttypeBebas{
     font-family: 'Bebas Neue', cursive;
   }
@@ -43,7 +65,7 @@ border: #131414;
   }
 
   .colorbk{
-    background-color: #d0d8d8;
+    background-color: #dfebeb;
     }
 
     .heigh{
@@ -59,9 +81,6 @@ border: #131414;
     color: rgb(29, 27, 27);
       font-size: 18px;
     }
-    .textisizecomcom{
-      font-size: 1px !important;
-    }
     .paddingbot{
       margin-bottom: 30px !important;
     }
@@ -76,50 +95,12 @@ border: #131414;
         font-size: 50px;
       }
 
- 
-      .backeditor{
-          background-color: rgb(0, 100, 105) !important;
+      .heighh{
+          height: 100vh;
       }
 
+      .backeditor{
+          background-color: rgb(255, 255, 255) !important;
+      }
 
-
-      body {
-        background: #eee
-    }
-    
-    .date {
-        font-size: 11px
-    }
-    
-    .comment-text {
-        font-size: 12px
-    }
-    
-    .fs-12 {
-        font-size: 12px
-    }
-    
-    .shadow-none {
-        box-shadow: none
-    }
-    
-    .name {
-        color: #007bff
-    }
-    
-    .cursor:hover {
-        color: blue
-    }
-    
-    .cursor {
-        cursor: pointer
-    }
-    
-    .scrollycomments{
-       overflow-y: scroll;
-       overflow-y: hidden;
-    }
-
-    .paddingleft{
-      padding-left: 4rem;
-    }
+      

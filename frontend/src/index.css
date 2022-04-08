@@ -14,4 +14,17 @@ color: red;
    
   }
  
- 
+  .fillImg{
+    height: 100vh;
+  }
+
+  .over{
+    overflow-x: hidden;
+  }
+  
+  .colorbk{
+    background-color: #dfebeb;
+    }
+    .texttypeLight300{
+      font-family: 'Oswald', sans-serif;
+    }

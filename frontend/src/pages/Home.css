@@ -14,7 +14,7 @@
   }
 .backgroundc{
   background-color: #438194;
-  height: 100vh;
+
 }
   .colorWhite{
 
@@ -44,7 +44,3 @@ border: #131414;
   padding-right: 10px;
   }
 
-  .over{
-    overflow-x: hidden;
-  }
-  

@@ -51,11 +51,6 @@ border: #131414;
   padding-right: 10px;
   }
 
-  .over{
-    overflow-x: hidden;
-    overflow-y: hidden;
-   
-  }
   .colorbk{
     background-color: #b1a7a7;
     }
@@ -64,6 +59,3 @@ border: #131414;
       background-color: #131414;
     }
 
-.fillImg{
-  height: 100vh;
-}

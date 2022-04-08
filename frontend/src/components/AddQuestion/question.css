@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300&display=swap');
 .zoom {
 
     transition: transform .2s !important; /* Animation */
@@ -37,6 +37,9 @@
     font-family: 'Bebas Neue', cursive;
   }
   
+  .texttypeLight300{
+    font-family: 'Oswald', sans-serif;
+  }
   .borderblack{
 
 border: #131414;
@@ -47,9 +50,48 @@ border: #131414;
   }
   .backImg{
   object-fit: cover ;
-  height: 600px;
+
   background-color: #ffffff;
   padding-right: 10px;
   }
 
+  .colorbk{
+    background-color: #dfebeb;
+    }
+
+    .heigh{
+    
+     height: 100vh;
+    }
  
+    .inputwidh{
+
+
+    }
+    .textisize{
+    color: rgb(29, 27, 27);
+      font-size: 18px;
+    }
+    .paddingbot{
+      margin-bottom: 30px !important;
+    }
+    .buttonwidth{
+      width: 150px !important;
+    }
+    .textisizetitle{
+      color: rgb(29, 27, 27);
+        font-size: 20px;
+      }
+      .textisizetitleu{
+        font-size: 50px;
+      }
+
+      .heighh{
+          height: 100vh;
+      }
+
+      .backeditor{
+          background-color: rgb(255, 255, 255) !important;
+      }
+
+      

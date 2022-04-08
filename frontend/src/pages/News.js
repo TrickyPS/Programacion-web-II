@@ -5,7 +5,7 @@ import Newsindex from "../components/AddNews/news";
 const News = ()=>{
     return (
  
-  <div className="over">
+  <div className="over colorbk">
     
  <NavBar></NavBar>
  <Newsindex></Newsindex>
