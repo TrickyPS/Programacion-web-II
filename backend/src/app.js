@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const api = process.env.API_VERSION;
 const app = express();
 const {
   userRoutes,
@@ -24,8 +25,8 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-app.use("/api/user", userRoutes);
-app.use("/api/posts", postsRoutes);
+app.use(`/api/${api}/user`, userRoutes);
+app.use(`/api/${api}/posts`, postsRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/noti", notificationsRoutes);
 app.use("/api/reactions", reactionsRoutes);

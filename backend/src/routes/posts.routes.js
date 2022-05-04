@@ -6,13 +6,14 @@ const {
   updatePost,
   deletePost,
 } = require("./../controllers/posts.controller");
+const md_auth = require("../middlewares/auth");
 
 const router = Router();
 
-router.post("/", addPost);
+router.post("/", [md_auth.ensureAuth] ,addPost);
 router.get("/:id", getOne);
 router.get("/", getAll);
-router.delete("/:id", deletePost); // eliminado permanente
-router.put("/:id", updatePost); //actualiza y baja logica
+router.delete("/:id", [md_auth.ensureAuth], deletePost); // eliminado permanente
+router.put("/:id", [md_auth.ensureAuth], updatePost); //actualiza y baja logica
 
 module.exports = router;

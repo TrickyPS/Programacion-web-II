@@ -1,10 +1,11 @@
 const postModel = require("./../models/posts.model");
-const imagesModel = require("./../models/images.model")
+const imagesModel = require("./../models/images.model");
 
 exports.addPost = async(req,res)=>{
     try {
-        const { user,title,category,description,images  } = req.body;
-        if(!user || !title || !category || !description || !images ) 
+        const { title,category,description,images  } = req.body;
+        const user = req.user.id;
+        if(!title || !category || !description || !images ) 
             return res.send({message:"Los datos enviados son invalidos"})
         
         const newPost = new postModel({user,title,category,description})
@@ -28,7 +29,7 @@ exports.getOne = async(req,res)=>{
         const post = await postModel.findById(id)
         .populate("images")
         .populate("category")
-        .populate({ 
+        .populate({
             path: 'comments',
             populate: {
               path: 'acomments',

@@ -1,4 +1,5 @@
 const userModel = require("./../models/user.model");
+const jwt = require('../services/jwt');
 
 exports.getAll = async(req, res) => {
   try {
@@ -16,7 +17,7 @@ exports.signUp = async (req, res) => {
     const newUser = new userModel({userName,password,email})
     await newUser.coderPassword()
     const user = await newUser.save()
-    return res.send({data:user});
+    return true;
   } catch (error) {
     console.log(error);
     res.send({ message: error });
@@ -36,7 +37,11 @@ exports.logIn = async(req, res) => {
     if(!matchPassword)
       return res.send({message:"El password es incorrecto"});
     
-    return res.send({data:user})
+      console.log(user);
+    return res.send({
+      accessToken: jwt.createAccessToken(user), 
+      refreshToken: jwt.createRefreshToken(user)
+    });
   }catch(error){
     console.log(error);
     res.send({ message: error }).end();
@@ -46,7 +51,7 @@ exports.logIn = async(req, res) => {
 exports.getOne = async(req, res) => {
   try {
     const { id } = req.params;
-    const user = await userModel.findById(id).populate("favorites");
+    const user = await userModel.findById(id).populate("favorites").populate("stars").populate("notifications");
     if (!user) res.send({ message: "Usuario no existe" }).end();
     return res.send({ data: user });
   } catch (error) {
