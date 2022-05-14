@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300&display=swap');
+.zoom {
+
+    transition: transform .2s !important; /* Animation */
+
+  }
+    .scrollyca{
+    overflow-y:scroll;
+    overflow-x: hidden !important;
+    overflow: auto;
+ height: 750px;
+ 
+  }
+  ::-webkit-scrollbar {
+    display: none;
+}
+  .zoom:hover {
+    cursor:pointer;
+    z-index: 1 !important;
+    transform: scale(1.1) !important; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    
+  }
+
+
+  .colorWhite{
+
+    color: rgb(236, 229, 229) !important;
+    
+  }
+
+
+  .texttypeBebas{
+    font-family: 'Bebas Neue', cursive;
+  }
+  
+  .texttypeLight300{
+    font-family: 'Oswald', sans-serif;
+  }
+
+
+  .cont{
+  object-fit:cover;
+  }
+  .backImgs{
+  object-fit:contain;
+  height: 400px;
+
+  }
+
+
+
+    .heigh{
+    
+     height: 100vh;
+    }
+ 
+    .inputwidh{
+
+
+    }
+    .textisize{
+    color: rgb(29, 27, 27);
+      font-size: 18px;
+    }
+    .paddingbot{
+      margin-bottom: 30px !important;
+    }
+    .buttonwidth{
+      width: 150px !important;
+    }
+    .textisizetitle{
+      color: rgb(29, 27, 27);
+        font-size: 20px;
+      }
+      .textisizetitleu{
+        font-size: 50px;
+      }
+
+      .heighh{
+          height: 100vh;
+      }
+
+   
+      

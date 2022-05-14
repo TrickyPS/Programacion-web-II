@@ -1,3 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+.navItem {
+
+color: red;
+  }
+
+  .navbarcolor{
+    background-color: rgb(13, 80, 80);
+ 
+  }
+
+  .zoom {
+    
+   
+  }
+ 
+  .fillImg{
+    height: 100vh;
+  }
+
+  .over{
+    overflow-x: hidden;
+  }
+  
+  .colorbk{
+    background-color: #dfebeb;
+    }
+    .texttypeLight300{
+      font-family: 'Oswald', sans-serif;
+    }

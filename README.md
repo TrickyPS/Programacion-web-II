@@ -1,5 +1,10 @@
 # Bienvenid@ a [GeekUP](https://geekup.com)
 
+
+[![GeekUP](/frontend/src/assets/logo-azul.png)](https://geekup.com)
+
+
+
  ### Integrantes 💼
  - [Pedro Ángel Ramirez Villarreal 1738240](https://github.com/TrickyPS)
  - [David Alejandro Montemayor Veliz 1732228](https://github.com/DavidAlMove)
@@ -40,6 +45,7 @@ Nuestra meta es la de facilitar la búsqueda de información y autoaprendizaje, 
 │   └── app.js
 ├── index.js
 ├── .env
+├── .gitignore
 ├── packaga-lock.json
 └── package.json
 ```
@@ -53,13 +59,73 @@ En esta carpeta de backend se encuentra la API  de nuestro proyecto, aquí se en
 - **db:** La carpeta contiene la conexión a la base de datos MongoDB.
 - **utils:** Contiene funciones que son utiles en la aplicación y solo es necesario llamarlo si se ocupan en cualquier parte del código.
 
-#### Empieza
+    ##### Empieza
+    
+    ``` bash  
+    git clone https://github.com/TrickyPS/Programacion-web-II.git
+    cd .\Programacion-web-II\backend
+    npm i
+    npm start
+    ```
+    
+    ##### Variables de entorno
+    
+    ``` bash  
+    DB_URI = mongodb+srv:/...
+    ```
 
-``` bash  
-git clone https://github.com/TrickyPS/Programacion-web-II.git
-cd .\Programacion-web-II\backend
-npm i
-npm start
+
+> Frontend
+
+
+```
+./
+├── src/
+│   ├── pages/
+│   │   └── *.js
+│   ├── components/
+│   │    └── /**/*.js
+│   ├── context/
+│   │    └── *.js
+│   ├── services/
+│   │    └── *.js
+│   ├── assets/
+│   └── App.js
+│   └── index.js
+│   └── index.css
+│   └── reportWebVitals.js
+├── public/
+│   └── index.html
+│   └── manifest.json
+│   └── robots.txt
+├── .gitignore
+├── packaga-lock.json
+└── package.json
 ```
 
+En esta carpeta de frontend se encuentra la página web del cliente, con ayuda de React se desarrolla las vistas de este proyecto.
 
+- **src:** Aquí se encuentra todo el código del front que contiene todo el código de desarrollo.
+- **pages:** Pages es la carpeta donde se encuentra los componentes que serán indexados en las rutas del cliente.
+- **componets:** Aquí esta carpeta contiene subcarpetas con el nombre de la pagina(/pages) donde proviene y esta contiene sus compoentes de React para tener mejor orden en el proyecto.
+- **context:** En la carpeta context se almacenan los datos que prevalecerán en toda la página o donde sea conveniente, por ejemplo los datos del usuario.
+- **service:** Aquí están las funciones que obtendrán datos de la api.
+- **assets:** Contiene recursos como imagenes, svg, etc.
+- **public:** Carpeta necesaria para que React funcione.
+
+    ##### Empieza
+
+    ``` bash  
+    git clone https://github.com/TrickyPS/Programacion-web-II.git
+    cd .\Programacion-web-II\frontend
+    npm i
+    npm start
+    ```
+
+    ##### Desplegar
+
+    ``` bash  
+    npm run build
+    npm i -g serve
+    npx serve -s build
+    ```

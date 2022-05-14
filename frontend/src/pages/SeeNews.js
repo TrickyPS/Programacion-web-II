@@ -1,16 +1,16 @@
 import React from "react";
 import NavBar from "../components/Layout/NavBar";
-import './Home.css'
-import Card from "../components/Home/homec"
-const Home = ()=>{
+import './SeeNews.css'
+import View from "../components/SeeNews/seene";
+const SeeNews = ()=>{
     return (
  
   <div className="over colorbk">
     
  <NavBar></NavBar>
- <Card></Card>
+ <View></View>
   </div>
     )
 }
 
-export default Home;
+export default SeeNews;

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.zoom {
+
+    transition: transform .2s !important; /* Animation */
+
+  }
+  
+  .zoom:hover {
+    cursor:pointer;
+    z-index: 1 !important;
+    transform: scale(1.1) !important; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    
+  }
+  .backgroundcolor{
+
+    background-color: #131414 !important;
+    height:60px;
+  }
+  .backgroundcolorOff{
+    background-color: #131414 ;
+  }
+  .backgroundcolorOfftitle{
+    background-color:#131414  ;
+  }
+
+  .colorWhite{
+
+    color: rgb(236, 229, 229) !important;
+    
+  }
+  .buttonColorsNav{
+    background-color: #438194;
+  }
+
+  .texttypeBebas{
+    font-family: 'Bebas Neue', cursive;
+  }
+  
+  .borderblack{
+
+border: #131414;
+  }
+
+  .cont{
+  object-fit:cover;
+  }
+  .backImg{
+  object-fit: cover ;
+  background-color: #ffffff;
+  padding-right: 10px;
+  }
+
+
+  .colorbk{
+    background-color: #e2e6ec;
+    }
+
+    body{
+      background-color: #131414;
+    }
+
