@@ -14,13 +14,18 @@ exports.getAll = async(req, res) => {
 exports.signUp = async (req, res) => {
   try {
     const { userName,password,email } = req.body;
+    if(!userName || !password || !email)
+      return res.status(400).send({message:"Los datos del usuario son invalidos, provee  un userName, password, email",data:null})
     const newUser = new userModel({userName,password,email})
     await newUser.coderPassword()
     const user = await newUser.save()
-    return true;
+    if(!user)
+      return res.status(500).send({message:"Error interno al registrar usuario. Vuelve a intentarlo",data:null})
+    res.send({message:"Registro exitoso",data:true})
+      
   } catch (error) {
     console.log(error);
-    res.send({ message: error });
+    res.status(500).send({ message: String(error),data:null });
   }
 };
 
@@ -28,20 +33,18 @@ exports.logIn = async(req, res) => {
   try{
     const {email,password} = req.body 
     if(!email || !password)
-        res.send({message:"Se debe enviar email y password"}).end()
+        return res.status(404).send({message:"Se debe enviar email y password",data:null})
         
     const user = await userModel.findOne({email}).populate("favorites");
     if(!user)
-        return res.send({message:"No existe el usuario"})
+        return res.send({message:"No existe el usuario",data:null})
     const matchPassword = await user.comparePassword(password);
     if(!matchPassword)
-      return res.send({message:"El password es incorrecto"});
-    
-      console.log(user);
-    return res.send({
+      return res.send({message:"El password es incorrecto",data:null});
+     res.send({data:{
       accessToken: jwt.createAccessToken(user), 
       refreshToken: jwt.createRefreshToken(user)
-    });
+    },message:"Ingresaste correctamente"});
   }catch(error){
     console.log(error);
     res.send({ message: error }).end();
@@ -51,12 +54,14 @@ exports.logIn = async(req, res) => {
 exports.getOne = async(req, res) => {
   try {
     const { id } = req.params;
+    if(!id)
+      return res.status(404).send({message:"Envia un id de parametro",data:null})
     const user = await userModel.findById(id).populate("favorites").populate("stars").populate("notifications");
     if (!user) res.send({ message: "Usuario no existe" }).end();
-    return res.send({ data: user });
+    return res.send({ data: user,message:"Usuario encontrado" });
   } catch (error) {
     console.log(error);
-    res.send({ message: error }).end();
+    res.send({ message: String(error) }).end();
   }
 };
 
