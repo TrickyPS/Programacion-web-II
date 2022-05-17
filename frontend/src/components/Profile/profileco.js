@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import './profilecocss.css';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Images } from "./photo";
-import Half from "./ImageP";
-const profileco = ()=>{
+import Half from "./../Profile/ImageP";
+import Context from "../../context/userContext";
+import defaultImg from "./../../assets/user.png"
+
+const Profileco = ()=>{
+
+  const {user} = useContext(Context)
  
     return (
         
@@ -19,9 +24,9 @@ const profileco = ()=>{
                 <div><span>Perfil</span></div>
    <div className="row">
    <div className="col-lg-6 row text-center mx-auto m-1">
-<img className="rounded-circle m-3" src="https://i.imgur.com/RpzrMR2.jpg" width="1000000"/>
+<img className="rounded-circle m-3" src={user?.image || defaultImg} width="1000000"/>
 </div>
-<a class="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 mx-auto" type="button" style={{width:"200px",height:"35px"}}>Cambiar foto de perfil</a>
+<a className="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 mx-auto" type="button" style={{width:"200px",height:"35px"}}>Cambiar foto de perfil</a>
      <span>Esta descripcion aparecera en tu perfil  abajo de tu imagen</span>
    </div>
       
@@ -32,9 +37,9 @@ const profileco = ()=>{
 <div className=" row">
   
     <span className="">Acerca de ti</span>
-  <textarea class="form-control mt-3" aria-label="With textarea" style={{height:"100px"}}></textarea>  
+  <textarea className="form-control mt-3" aria-label="With textarea" style={{height:"100px"}}></textarea>  
   <span>Agrega una descripcion de tu perfil</span>
-  <a class="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 mx-auto" type="button" style={{width:"200px",height:"35px"}}>Cambiar descripcion</a>
+  <a className="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 mx-auto" type="button" style={{width:"200px",height:"35px"}}>Cambiar descripcion</a>
 </div>
 
 
@@ -58,31 +63,31 @@ const profileco = ()=>{
              </div>
            
 <div className="mx-auto row justify-content-center text-start m-4">
-<div class="form-outline col-lg-5 m-1">
-<label class="form-label" for="form12">Nombre</label>
-<input type="text" id="form12" class="form-control" />
+<div className="form-outline col-lg-5 m-1">
+<label className="form-label" for="form12">Nombre</label>
+<input type="text" id="form12" className="form-control" />
 
 </div>
-<div class="form-outline col-lg-5 m-1">
-<label class="form-label" for="form12">Apellido</label>
-<input type="text" id="form12" class="form-control" />
+<div className="form-outline col-lg-5 m-1">
+<label className="form-label" for="form12">Apellido</label>
+<input type="text" id="form12" className="form-control" />
 
 </div>
-<div class="form-outline col-lg-5 m-1">
-<label class="form-label" for="form12">Correo</label>
-<input type="text" id="form12" class="form-control" />
-
-</div>
-
-<div class="form-outline col-lg-5 m-1">
-<label class="form-label" for="form12">Contraseña</label>
-<input type="text" id="form12" class="form-control" />
+<div className="form-outline col-lg-5 m-1">
+<label className="form-label" for="form12">Correo</label>
+<input type="text" id="form12" className="form-control" />
 
 </div>
 
-<div class="form-outline col-lg-7 m-1">
-<label class="form-label" for="form12">Region</label>
-<select class="form-select" aria-label="Default select example">
+<div className="form-outline col-lg-5 m-1">
+<label className="form-label" for="form12">Contraseña</label>
+<input type="text" id="form12" className="form-control" />
+
+</div>
+
+<div className="form-outline col-lg-7 m-1">
+<label className="form-label" for="form12">Region</label>
+<select className="form-select" aria-label="Default select example">
 <option selected>Open this select menu</option>
 <option value="1">One</option>
 <option value="2">Two</option>
@@ -91,7 +96,7 @@ const profileco = ()=>{
 
 </div>
 <div className="col-lg-12 text-center ">
-<a class="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 " type="button" style={{width:"200px",height:"35px"}}>Cambiar Informacion</a>
+<a className="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 " type="button" style={{width:"200px",height:"35px"}}>Cambiar Informacion</a>
 </div>
 
 </div>
@@ -119,7 +124,7 @@ const profileco = ()=>{
     <span>Categoria: Backend</span>
 </div>
 <div className="col-lg-2  row">
-<a class="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 " type="button" style={{width:"200px",height:"35px"}}>Ver publicacion</a>
+<a className="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2 " type="button" style={{width:"200px",height:"35px"}}>Ver publicacion</a>
 </div>
 
 </div>
@@ -153,7 +158,7 @@ const profileco = ()=>{
     <span>Comentario: El problema de tu codigo se encuentra en la parte del header</span>
 </div>
 <div className="col-lg-2  row">
-<a class="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2"  type="button" style={{width:"100px",height:"35px"}}>Ver publicacion</a>
+<a className="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2"  type="button" style={{width:"100px",height:"35px"}}>Ver publicacion</a>
 </div>
 
 </div>
@@ -189,7 +194,7 @@ const profileco = ()=>{
 
 </div>
 <div className="col-lg-2  row">
-<a class="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2"  type="button" style={{width:"100px",height:"35px"}}>Ver publicacion</a>
+<a className="colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm  shadow-none m-2"  type="button" style={{width:"100px",height:"35px"}}>Ver publicacion</a>
 </div>
 
 </div>
@@ -221,4 +226,4 @@ const profileco = ()=>{
     )
 }
 
-export default profileco;
+export default Profileco;

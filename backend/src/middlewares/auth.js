@@ -8,14 +8,13 @@ exports.ensureAuth = (req, res, next) => {
         return res.status(403).send({message:"No hay header de autenticación."});
     }
 
-    const token = req.headers.authorization.replace(/['"]+/g, "");
+    const token = req.headers.authorization.split(" ")[1];
 
     try {
         var payload = jwt.decode(token, SECRET_KEY);
         if(payload.exp <= moment.unix()){
             return res.status(404).send({message: "El token ha expirado."});
         }
-        console.log(payload);
     } catch (ex) {
         console.log(ex);
         return res.status(404).send({message: "Token inválido."});

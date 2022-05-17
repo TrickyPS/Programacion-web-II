@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './seeprofile.css';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Images } from "./photo";
-import Half from "./ImageP";
+import Half from "./../Profile/ImageP";
 const profileco = ()=>{
  
     return (
@@ -25,19 +25,19 @@ const profileco = ()=>{
     <h1>TrickyPS</h1>
     <div className="d-flex  justify-content-center border rounded ">
                        
-                            <div class="col-sm-3 border-right m-3">
-                                <div class="description-block">
-                                    <h5 class="description-header">3,200</h5> <span class="description-text">Preguntas</span>
+                            <div className="col-sm-3 border-right m-3">
+                                <div className="description-block">
+                                    <h5 className="description-header">3,200</h5> <span className="description-text">Preguntas</span>
                                 </div>
                             </div>
-                            <div class="col-sm-3 m-3 border-right">
-                                <div class="description-block">
-                                    <h5 class="description-header">13,000</h5> <span class="description-text">Respuestas</span>
+                            <div className="col-sm-3 m-3 border-right">
+                                <div className="description-block">
+                                    <h5 className="description-header">13,000</h5> <span className="description-text">Respuestas</span>
                                 </div>
                             </div>
-                            <div class="col-sm-3 m-3">
-                                <div class="description-block">
-                                    <h5 class="description-header">35</h5> <span class="description-text">Reacciones</span>
+                            <div className="col-sm-3 m-3">
+                                <div className="description-block">
+                                    <h5 className="description-header">35</h5> <span className="description-text">Reacciones</span>
                                 </div>
                             </div>
                           

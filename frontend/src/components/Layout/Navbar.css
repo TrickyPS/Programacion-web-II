@@ -32,7 +32,26 @@
     background-color: #438194;
   }
 
+  .buttonColorsNav:hover{
+    background-color: #0e6e8b;
+  }
+
   .texttypeBebas{
     font-family: 'Bebas Neue', cursive;
   }
   
+  .drop-navbar-dark{
+    background-color: #131414 !important;
+    height: 40px !important;
+    display:flex ;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  .drop-navbar-dark-bg{
+    background-color: #131414 !important;
+  }
+
+  .drop-navbar-dark:hover{
+    background-color: #2f3333 !important;
+  }

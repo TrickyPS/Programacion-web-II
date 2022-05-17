@@ -6,9 +6,9 @@ const SECRET_KEY = "0a1b2c3d4e";
 exports.createAccessToken = function(user){
     const payload = {
         id: user._id,
-        fullname: user.fullname,
         email: user.email,
-        role: user.role,
+        userName:user.userName,
+        role: user.userType,
         createToken: moment().unix(),
         exp: moment().add(10, "days").unix()
     };

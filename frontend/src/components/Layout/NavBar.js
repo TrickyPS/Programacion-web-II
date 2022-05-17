@@ -1,29 +1,46 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 
 import { MdNotificationsActive } from 'react-icons/md';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaRocket } from 'react-icons/fa';
+import { BiExit ,BiNews,BiCategory} from 'react-icons/bi';
 import './Navbar.css';
 import imgLogo from "./../../assets/logo-blanco.png";
+import defaultImg from "./../../assets/user.png";
+import { Link, useNavigate } from "react-router-dom";
+import Context from "../../context/userContext";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../api/config";
 
 const NavBar = ()=>{
+    const [hover,setHover] =useState(false)
+    const {user,setAccessToken,setRefreshToken,setUser} = useContext(Context)
+    const navigate = useNavigate()
+    const handleLogOut = ()=>{
+      localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(REFRESH_TOKEN);
+      setAccessToken(null)
+      setRefreshToken(null)
+      setUser(null)
+      navigate("/login")
+    }
     return ( 
       <nav className="navbar navbar-light bg-light  fixed-top backgroundcolor colorWhite " >   
    
-      <div className="container-fluid texttypeBebas" > 
-         <a className="navbar-brand  colorWhite" href="#" style={{fontSize:"25px"}} ><img src={imgLogo} width={110} alt="" /></a>
+      <div className="container-fluid texttypeBebas d-flex" > 
+         <Link className="navbar-brand  colorWhite" to="/" style={{fontSize:"25px"}} >
+           <img src={imgLogo} width={110} alt="" /></Link>
 
-         <div className="perfil zoom  colorWhite   d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px",marginLeft:"20px"}}>
+         <Link to="/ViewNews" className="perfil zoom  colorWhite   d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px",marginLeft:"20px",textDecoration:"none"}}>
             
         <span className=""  >Noticias</span>
-          </div>
+          </Link>
 
-         <div className="perfil zoom  colorWhite   d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px",marginLeft:"20px"}}>
+         <Link to="/home" className="perfil zoom  colorWhite   d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px",marginLeft:"20px",textDecoration:"none"}}>
             
             <span className=""  >Explorar</span>
-              </div>
+              </Link>
          <div className="d-flex mx-auto ">
 
               <input style={{width:"300px"}} className="form-control me-2  d-none d-sm-none d-md-none d-lg-block " type="search" placeholder="Buscar" aria-label="Search"/>
@@ -34,26 +51,57 @@ const NavBar = ()=>{
          
          </div>
          
-         <div className="perfil zoom btn colorWhite  buttonColorsNav d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px"}}>
+       {
+         !user && 
+         <>
+              <Link to="/login" className="perfil zoom btn colorWhite  buttonColorsNav d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px"}}>
             
             <span className=""  >Inicia sesion</span>
-              </div>
+              </Link>
           
-        <div className="perfil zoom btn colorWhite  buttonColorsNav d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px"}}>
+        <Link to="/register" className="perfil zoom btn colorWhite  buttonColorsNav d-none d-xs-none d-sm-none  d-lg-block" style={{marginRight:"20px"}}>
             
         <span className=""  >Registrate</span>
-          </div>
-          <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none  d-xs-none  d-sm-none d-lg-block"  >
+          </Link>
+         </>
+       }
+          <Link to="/question" className="perfil zoom btn colorWhite text-center buttonColorsNav d-none  d-xs-none  d-sm-none d-lg-block"  >
             
-        <span className="pt-4" >Preguntar <FaRocket  className="" style={{color:"white"}} /></span>
+            <span className="pt-4" >Preguntar <FaRocket  style={{color:"white"}} /></span>
+          </Link>
+          {
+            user &&
+            <button  className="btn zoom d-none  d-xs-none  d-sm-none d-lg-block" style={{}}>
+            <MdNotificationsActive  className="" style={{fontSize:"30px",color:"white"}} />
+              </button>
+          }  
+          {
+            user && 
+            <div className="perfil zoom btn colorWhite position-relative" onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} >
+            <img src={user?.image || defaultImg} width="33" height="33" className=" rounded-circle" style={{marginRight:"10px"}}></img>
+            <span className="" style={{paddingRight:"10px"}}>TrickyPS</span>
+           {
+             hover &&
+          
+               <div  className="position-absolute   w-100 d-flex align-items-center justify-content-center flex-column  drop-navbar-dark-bg " style={{top:"100%"}}  > 
+                {
+                user.userType === 0 &&
+               <>
+                 <div onClick={()=>navigate("/news")}  className="text-white  w-100 drop-navbar-dark " ><BiNews style={{marginRight:"3px"}} /> Noticia  </div>
+                <div onClick={()=>navigate("/addCategory")}  className="text-white  w-100 drop-navbar-dark " ><BiCategory style={{marginRight:"3px"}} /> Categoria  </div>
+               </>
+              }
+               <div onClick={handleLogOut} className="text-danger  w-100  drop-navbar-dark" ><BiExit style={{marginRight:"3px"}} /> Salir  </div>
+               
+             
+               
+               </div>
+               
+           
+
+           }
           </div>
-          <button  className="btn zoom d-none  d-xs-none  d-sm-none d-lg-block" style={{}}>
-      <MdNotificationsActive  className="" style={{fontSize:"30px",color:"white"}} />
-        </button>  
-          <div className="perfil zoom btn colorWhite ">
-            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="33" height="33" className=" rounded-circle" style={{marginRight:"10px"}}></img>
-        <span className="" style={{paddingRight:"10px"}}>TrickyPS</span>
-          </div>
+          }
         
   
   
@@ -61,7 +109,7 @@ const NavBar = ()=>{
         <a className="navbar-toggler colorWhite   d-lg-none zoom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <GiHamburgerMenu  className="mb-1" style={{fontSize:"25px",color:"white"}} />
         </a>
-        <div className="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div className="offcanvas offcanvas-start " tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div className="offcanvas-header backgroundcolorOfftitle">
             <h5 className="offcanvas-title mx-auto" id="offcanvasNavbarLabel">Menu de opciones</h5>
             <a type="button" className=" text-reset" data-bs-dismiss="offcanvas" aria-label="Close">

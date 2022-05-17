@@ -11,7 +11,8 @@ const {
   commentsRoutes,
   acommentsRoutes,
   favoriteRoutes,
-  newsRoutes
+  newsRoutes,
+  authRoutes
 } = require("./routes");
 
 const cors = require("cors");
@@ -27,12 +28,13 @@ app.use(cors());
 //routes
 app.use(`/api/${api}/user`, userRoutes);
 app.use(`/api/${api}/posts`, postsRoutes);
-app.use("/api/category", categoryRoutes);
-app.use("/api/noti", notificationsRoutes);
-app.use("/api/reactions", reactionsRoutes);
-app.use("/api/comments", commentsRoutes);
-app.use("/api/acomments", acommentsRoutes);
-app.use("/api/favorites", favoriteRoutes);
-app.use("/api/news", newsRoutes);
+app.use(`/api/${api}/category`, categoryRoutes);
+app.use(`/api/${api}/noti`, notificationsRoutes);
+app.use(`/api/${api}/reactions`, reactionsRoutes);
+app.use(`/api/${api}/comments`, commentsRoutes);
+app.use(`/api/${api}/acomments`, acommentsRoutes);
+app.use(`/api/${api}/favorites`, favoriteRoutes);
+app.use(`/api/${api}/news`, newsRoutes);
+app.use(`/api/${api}/auth`,authRoutes );
 
 module.exports = app;

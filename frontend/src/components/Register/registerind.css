@@ -33,6 +33,10 @@
     background-color: #438194;
   }
 
+  .buttonColorsNav:disabled{
+    background-color: #438194;
+  }
+
   .texttypeBebas{
     font-family: 'Bebas Neue', cursive;
   }

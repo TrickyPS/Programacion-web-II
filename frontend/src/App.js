@@ -8,23 +8,46 @@ import Question from "./pages/Question";
 import ViewNews from "./pages/ViewNews";
 import SeeNews from "./pages/SeeNews";
 import SeeProfile from "./pages/SeeProfile";
+import './index.css';
+import { UserProvider } from "./context/userContext";
+import { PrivateRoute } from "./components/Layout/PrivateRoute";
+import AddCategory from "./pages/addCategory";
+import {StorageProvider,FirebaseAppProvider} from "reactfire";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB2NcVEvk_wsNWqqbn8Xyn2VgIXbINdR0Q",
+  authDomain: "pw2-fcfm.firebaseapp.com",
+  projectId: "pw2-fcfm",
+  storageBucket: "pw2-fcfm.appspot.com",
+  messagingSenderId: "822957861538",
+  appId: "1:822957861538:web:39adbdc25d1cf2076a45fb"
+};
+
 function App() {
+
+
   return (
-    <BrowserRouter>
-      <Routes>
+ 
+     <UserProvider>
+       <FirebaseAppProvider firebaseConfig={firebaseConfig} >
+       <Routes>
         
         <Route path="/" element={<Navigate to="/home" ></Navigate>} />
         <Route path="/home" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="/News" element={<News/>} />
-        <Route path="/perfil" element={<Profile/>} />
-        <Route path="/question" element={<Question/>} />
+        <Route path="/News" element={<PrivateRoute><News/></PrivateRoute>} />
+        <Route path="/perfil" element={<PrivateRoute><Profile/></PrivateRoute>} />
+        <Route path="/question" element={<PrivateRoute><Question/></PrivateRoute>} />
         <Route path="/ViewNews" element={<ViewNews/>} />
-        <Route path="/SeeNews" element={<SeeNews/>} />
+        <Route path="/SeeNews/:id" element={<SeeNews/>} />
         <Route path="/SeeProfile" element={<SeeProfile/>} />
+        <Route path="/addCategory" element={<AddCategory/>} />
+        <Route path="/*" element={<Navigate to="/home"></Navigate>} />
       </Routes>
-    </BrowserRouter>
+       </FirebaseAppProvider>
+     </UserProvider>
+   
   );
 }
 

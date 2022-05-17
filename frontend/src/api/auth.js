@@ -1,5 +1,4 @@
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../services/services.config";
-import { BASE_PATH, API_VERSION } from "./config";
+import {  ACCESS_TOKEN, REFRESH_TOKEN, axios  } from "./config";
 import jwtDecode from 'jwt-decode';
 
 export function getAccessTokenApi(){
@@ -23,7 +22,7 @@ export function getRefreshTokenApi(){
 }
 
 export function refreshAccessTokenApi(refreshToken){
-    const url = `${BASE_PATH}/${API_VERSION}/refresh-access-token`;
+    
     const bodyObj = {
         refreshToken: refreshToken
     }
@@ -35,7 +34,7 @@ export function refreshAccessTokenApi(refreshToken){
             "Content-Type": "application/json"
         }
     };
-
+/*
     fetch(url, params).then(response => {
         if(response.status !== 200){
             return null;
@@ -49,7 +48,7 @@ export function refreshAccessTokenApi(refreshToken){
             localStorage.setItem(ACCESS_TOKEN, accessToken);
             localStorage.setItem(REFRESH_TOKEN, refreshToken);
         }
-    });
+    });*/
 }
 
 export function logout(){
@@ -65,3 +64,41 @@ function willExpireToken(token){
 
     return now > exp;
 }
+
+export const register=async({userName,email,password})=>{
+try {
+    const response = await axios.post("auth/register",{userName,email,password})
+    if(response.status === 200){
+        if(response.data?.data){
+            return {message:response.data?.message || "Registro exitoso",success:true,data:response.data?.data}
+        }else{
+            return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
+        }
+    }
+    return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
+    
+       
+    
+} catch (error) {
+    return {message:"Un error ha ourrido. Vuelvelo a intentar",success:false,data:null}
+}
+}
+
+export const login=async({userName,email,password})=>{
+    try {
+        const response = await axios.post("auth/login",{email,password})
+        if(response.status === 200){
+            if(response.data?.data){
+                return {message:response.data?.message || "Registro exitoso",success:true,data:response.data?.data}
+            }else{
+                return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
+            }
+        }
+        return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
+        
+           
+        
+    } catch (error) {
+        return {message:"Un error ha ourrido. Vuelvelo a intentar",success:false,data:null}
+    }
+    }

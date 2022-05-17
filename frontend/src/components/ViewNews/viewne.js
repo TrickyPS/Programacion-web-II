@@ -1,10 +1,30 @@
-import React from "react";
+import React,{useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Editor } from "react-draft-wysiwyg";
 import './viewne.css';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import Half from "./ImageP";
+import Half from "./../Profile/ImageP";
+import defaultImg from "./../../assets/logo-azul.png"
+import { useState } from "react";
+import { getAllNewsApi } from "../../api/news";
+import { useNavigate } from "react-router-dom";
 const AddQuestion = ()=>{
+
+  const [noticias,setNoticias] = useState([])
+
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    (async()=>{
+      const data = await getAllNewsApi();
+      if(data.success)
+        setNoticias(data.data);
+      
+    })()
+  },[])
+
+
+
     return (
         <div className="texttypeLight300 colorbk heigh  " style={{marginTop:"59px"}}>
           <div className="d-flex row  heigh  textisize">
@@ -17,7 +37,7 @@ const AddQuestion = ()=>{
   <div className=" mb-3">
           <span>Selecciona la categoria</span>
           </div>
-  <select class="form-select" aria-label="Default select example">
+  <select className="form-select" aria-label="Default select example">
 <option selected>Open this select menu</option>
 <option value="1">One</option>
 <option value="2">Two</option>
@@ -28,7 +48,7 @@ const AddQuestion = ()=>{
   <div className=" mb-3">
           <span>Selecciona la categoria</span>
           </div>
-  <select class="form-select" aria-label="Default select example">
+  <select className="form-select" aria-label="Default select example">
 <option selected>Open this select menu</option>
 <option value="1">One</option>
 <option value="2">Two</option>
@@ -39,7 +59,7 @@ const AddQuestion = ()=>{
   <div className=" mb-3">
           <span>Selecciona la categoria</span>
           </div>
-  <select class="form-select" aria-label="Default select example">
+  <select className="form-select" aria-label="Default select example">
 <option selected>Open this select menu</option>
 <option value="1">One</option>
 <option value="2">Two</option>
@@ -49,136 +69,35 @@ const AddQuestion = ()=>{
 
     </div>
     <div className="cards row  scrollyc">
- <div className="col-lg-3 col-md-6 col-sm-6  pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
+        {
+          noticias.map((item,index)=>(
+            <div className="col-lg-3 col-md-6 col-sm-6  pt-2" key={index}>
+              <div className="card">
+                <img style={{width:"100%",height:"70px",objectFit:"cover"}} src={item.images[0]?.url || defaultImg} className="card-img-top" alt="Fissure in Sandstone"/>
+                <div className="card-body">
+                  <h5 className="card-title">{item.title || `Noticia ${index}`}</h5>
+                  <div  className="card-text elipsis-card">{item.descriptionCorta}</div> 
+                  <div onClick={()=>{
+                      navigate(`/seeNews/${item._id}`)
+                  }}  className="perfil zoom btn colorWhite text-center buttonColorsNav d-grid" >
+               
+                    <span   >Ver</span>
+                  </div>
+                </div>
               </div>
-</div>
-</div>
-         </div>
-         <div className="col-lg-3  col-md-6 col-sm-6   pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
-              </div>
-</div>
-</div>
-         </div> 
-         <div className="col-lg-3  col-md-6 col-sm-6  pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-   <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
-              </div>
-</div>
-</div>
-         </div>
-         <div className="col-lg-3  col-md-6 col-sm-6   pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-   <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
-              </div>
-</div>
-</div>
-         </div>
-         <div className="col-lg-3  col-md-6 col-sm-6   pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-   <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
-              </div>
-</div>
-</div>
-         </div>
-         <div className="col-lg-3  col-md-6 col-sm-6   pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-   <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
-              </div>
-</div>
-</div>
-         </div>
-         <div className="col-lg-3  col-md-6 col-sm-6   pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-   <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
-              </div>
-</div>
-</div>
-         </div>
-         <div className="col-lg-3  col-md-6 col-sm-6   pt-2">
-         <div class="card">
-<img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-   <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" >
-            
-            <span className=""  >Buscar</span>
-              </div>
-</div>
-</div>
-         </div>
-         
-         
+            </div>
+          ))
+        }
     </div>
  
-  
-         
         </div>
-        
-        
-   
      </div>
      
 
-
-   <Half></Half>
-
-
-   
-     
+        <Half></Half>
       </div>
    
-     
-     
-        
-       
-        </div>
+    </div>
     )
 }
 
