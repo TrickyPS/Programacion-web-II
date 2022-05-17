@@ -50,7 +50,10 @@ exports.update = async(req,res)=>{ //actualizar o baja logica
         const body = req.body
         const user = await userModel.findOneAndUpdate({_id:id},body,{new:true})
         if(!user)
-          return res.status()
+          return res.status({message: "Error interno del servidor",data:null })
+          else{
+            res.status({message:"success",data:user})
+          }
     }catch(error){
         console.log(error);
         res.status(500).send({ message: "Error interno del servidor",data:null });
