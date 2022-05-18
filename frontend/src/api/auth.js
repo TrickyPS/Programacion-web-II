@@ -80,6 +80,7 @@ try {
        
     
 } catch (error) {
+    console.log(error);
     return {message:"Un error ha ourrido. Vuelvelo a intentar",success:false,data:null}
 }
 }
