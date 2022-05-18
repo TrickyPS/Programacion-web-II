@@ -24,7 +24,7 @@ exports.add = async(req, res) => {
 exports.deleteComment = async(req, res) => {
     try {
         const {id} = req.params;
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
         return res.status(400).send({message:"Provee un id valido",data:null})
         await acommentModel.deleteOne({_id:id});
         return res.send({message: "Comentario eliminado", data:true});
@@ -37,7 +37,7 @@ exports.deleteComment = async(req, res) => {
 exports.update = async(req,res)=>{
     try {
         const {id} = req.params;
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
         return res.status(400).send({message:"Provee un id valido",data:null})
         const {body} = req;
         const comment = await acommentModel.findById(id);

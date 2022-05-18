@@ -28,11 +28,11 @@ exports.updateReaction = async (req, res) => {
   try {
     const { id } = req.params;
     const { body } = req;
-    const reaction = await reactionsModel.findById(id);
+    const reaction = await reactionsModel.findOne({user:id});
     if (!reaction) 
       return res.send({ message: "No se encontró la reacción" ,data:null});
     const updatedReaction = await reactionsModel.findOneAndUpdate(
-      { _id: id },
+      { user: id },
       { $set: body },
       { new: true }
     );

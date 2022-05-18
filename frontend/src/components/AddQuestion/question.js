@@ -45,7 +45,7 @@ const AddQuestion = ()=>{
                 progress: undefined,
                 })
                 setTitle("")
-                setCategory(null)
+                setCategory("")
                 setDescription("")
                 setImages([])
                 

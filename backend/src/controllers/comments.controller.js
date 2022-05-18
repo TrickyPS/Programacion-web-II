@@ -23,7 +23,7 @@ exports.newComment = async(req, res) => {
 exports.getComment = async(req, res) =>{
     try {
         const {id} = req.params;
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
             return res.status(400).send({message:"Provee un id valido",data:null})
         const comment = await commentModel.findById(id).populate({ 
             path: 'acomments',
@@ -43,7 +43,7 @@ exports.getComment = async(req, res) =>{
 exports.deleteComment = async(req, res) => {
     try {
         const {id} = req.params;
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
             return res.status(400).send({message:"Provee un id valido",data:null})
         await commentModel.deleteOne({_id:id});
         return res.send({message: "Comentario eliminado", data:true});
@@ -56,7 +56,7 @@ exports.deleteComment = async(req, res) => {
 exports.updateComment = async(req,res)=>{
     try {
         const {id} = req.params;
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
             return res.status(400).send({message:"Provee un id valido",data:null})
         const {body} = req;
         const comment = await commentModel.findById(id);
@@ -74,6 +74,7 @@ exports.addStar = async(req,res)=>{ //agrega estrella
         const {idUser,idComment} = req.body
         if(!isValidObjectId(idUser) || !isValidObjectId(idComment))
             return res.status(400).send({message:"Provee  un idUSer , idComment valido",data:null})
+            await commentModel.updateOne({_id:idComment},{$set:{star:true}},{new:true})
         await userModel.updateOne({_id:idUser},{$push:{stars:idComment}},{new:true})
         return res.send({data:true}).end();
     }catch(error){

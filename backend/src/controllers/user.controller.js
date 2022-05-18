@@ -17,7 +17,9 @@ exports.getOne = async(req, res) => {
     const { id } = req.params;
     if(!isValidObjectId(id))
       return res.status(400).send({message:"Envia un id valido de parametro",data:null})
-    const user = await userModel.findById(id).populate("favorites").populate("stars").populate("notifications")
+    const user = await userModel.findById(id).populate({path:"favorites",populate:{
+      path:"post"
+    }}).populate("stars").populate("notifications")
     if (!user) 
       return  res.send({ message: "Usuario no existente",data:null }).end();
     res.send({ data: user,message:"Usuario encontrado" });

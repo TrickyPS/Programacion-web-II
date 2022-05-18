@@ -27,7 +27,7 @@ exports.addPost = async(req,res)=>{
 exports.getOne = async(req,res)=>{
     try {
         const {id} = req.params
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
             return res.status(400).send({message:"Provee un id valido",data:null})
         const post = await postModel.findById(id)
         .populate("images")
@@ -59,14 +59,20 @@ exports.getAll = async(req,res)=>{
         .populate("category")
         .populate({ 
             path: 'comments',
-            populate: {
-              path: 'acomments',
-              model: 'acomments',
-              populate:{
-                path: 'user',
-                model: 'user',
-              }
-            } 
+            populate: [
+                {
+                    path: 'acomments',
+                    model: 'acomments',
+                    populate:{
+                      path: 'user',
+                      model: 'user',
+                    }
+                  },
+                  {
+                      path:"user",
+                      model:"user"
+                  } 
+            ]
          })
         .populate("reactions")
         .populate("user")
@@ -81,7 +87,7 @@ exports.getAll = async(req,res)=>{
 exports.updatePost = async(req,res)=>{
     try {
         const {id} = req.params;
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
             return res.status(400).send({message:"Provee un id valido",data:null})
         const {body} = req;
         const post = await postModel.findById(id);
@@ -98,7 +104,7 @@ exports.updatePost = async(req,res)=>{
 exports.deletePost = async(req,res)=>{
     try {
         const {id} = req.params;
-        if(!isValidObjectId(is))
+        if(!isValidObjectId(id))
             return res.status(400).send({message:"Provee un id valido",data:null})
         const post = await postModel.findById(id);
         if(!post) return res.send({message:"No se encontró el post"});

@@ -19,9 +19,9 @@ exports.postUserNotifications = async(req, res) => {
         const userOwner = req.user?.id;
         if(!text || !user || !userOwner) 
         return res.status(400).send({message:"Los datos enviados no son validos",data:null});
-        const noti = notificationModel.create({text,user:userOwner});
+        const noti = await notificationModel.create({text,user:userOwner});
 
-        await userModel.updateOne({_id:user},{$push:{notifications:noti._id}})
+        await userModel.findOneAndUpdate({_id:user},{$push:{notifications:noti._id}})
         return res.send({data: true});
     } catch (error) {
         console.log(error);

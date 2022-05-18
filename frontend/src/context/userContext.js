@@ -18,6 +18,7 @@ export function UserProvider({children}){
             console.log("actualiza datos de usuario");
             (async()=>{
                const response =  await getOne({token:accessToken,id})
+               console.log(response.data);
                setUser(response.data)
             })()
         }

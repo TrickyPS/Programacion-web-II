@@ -47,7 +47,7 @@ const AddNews = ()=>{
                 progress: undefined,
                 })
                 setTitle("")
-                setCategory(null)
+                setCategory("")
                 setDescription("")
                 setImages([])
                 setDescriptionCorta("")

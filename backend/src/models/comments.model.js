@@ -10,6 +10,10 @@ const comments = new Schema(
         ref: "acomments",
       },
     ],
+    star:{
+      type:Boolean,
+      default:false
+    },
     user: {
       type: Types.ObjectId,
       ref: "user",
