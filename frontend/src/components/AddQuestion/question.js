@@ -27,7 +27,6 @@ const AddQuestion = ()=>{
             const data = await getAllCatgeories();
             if(data.success)
                 setCategories(data.data)
-            console.log(categories);
         })()
     },[])
 
@@ -94,22 +93,11 @@ const AddQuestion = ()=>{
           }
 
     return (
-        <div className=" colorbk heigh  " style={{marginTop:"59px"}}>
-                             <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>  
-<ToastContainer />
-        <div className="row heigh texttypeBebas textisize">
+        <div className=" colorbk container heigh  " style={{marginTop:"59px"}}>
+                            
+        <div className="row  heigh texttypeBebas textisize">
         
-<div className="editor m-5 col-lg-8 align-self">
+<div className="editor mt-5 mb-5 col-lg-8 align-self">
     <div className="card">
     <div className="title col-lg-10 mx-auto pt-4 text-center ">
 <h4 className="">Crea tu pregunta</h4>
@@ -118,8 +106,8 @@ pauseOnHover
     <div className=" mb-3">
             <span>Selecciona la categoria</span>
             </div>
-    <select className="form-select" aria-label="Default select example" value={category} onChange={(e)=>setCategory(e.target.value)}  >
-  <option  selected value={null} > Selecciona una categoría </option>
+    <select className="form-select" aria-label="Default select example"  value={category} onChange={(e)=>setCategory(e.target.value)}  >
+  <option   value="" disabled > Selecciona una categoría </option>
         {
             categories.map((item,index)=>(
                 <option key={index} value={item._id} >{item.name}</option>

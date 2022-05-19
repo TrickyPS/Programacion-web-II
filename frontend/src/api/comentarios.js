@@ -4,7 +4,7 @@ export const addCommentApi = async({token,comment,idPost})=>{
     try {
         const  response = await axios.post("comments",{comment,idPost},{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });
@@ -66,7 +66,7 @@ export const addSubCommnet = async({token,comment,idComment})=>{
     try {
         const  response = await axios.post("acomments",{comment,idComment},{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });
@@ -90,7 +90,7 @@ export const addStarApi = async({token,idComment,idUser})=>{
     try {
         const  response = await axios.post("comments/star",{idComment,idUser},{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });

@@ -63,7 +63,7 @@ i18n.dayNames = [
     "Diciembre",
   ];
 
-  const Question = ({data})=>{
+ export const Question = ({data})=>{
     const [showComentarios,setShowComentarios] = useState(false)
     const [showComentar,setShowComentar] = useState(false)
       const [item,setItem] = useState(data)
@@ -213,28 +213,18 @@ i18n.dayNames = [
       }
 
       return (
-        <div className="mx-auto col-md-10  pt-5">
-             <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>  
+        <div className="mx-auto col-md-10  pb-5">
+
         <div className="m-2 card d-flex flex-column comment-section">
             <div className=" p-2">
                 <div className="d-flex flex-row user-info">
-                    <img className="rounded-circle  m-2" src={item.user?.image || defaultImg} width="40"/>
+                    <img className="rounded-circle  m-2" src={item?.user.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}}/>
                     <div className="d-flex flex-column  ml-3">
-                        <span className="d-block font-weight-bold name" style={{paddingLeft:"5px"}}>{item.user?.userName}</span>
+                        <span onClick={()=>navigate(`/SeeProfile/${item?.user._id}`)}  className="d-block font-weight-bold name  " style={{paddingLeft:"5px",cursor:"pointer"}}>{item?.user.userName}</span>
                         <span className="date text-black-50" style={{paddingLeft:"5px"}}>{dateFormat(item?.createdAt,"GMT-6:dddd, mmmm dS, yyyy, h:MM:ss TT").split("6:")[1]}</span></div>
                 </div>
                 <div className="mt-2">
-                <div  dangerouslySetInnerHTML={{__html: draftToHtml(convertToRaw(convertFromRaw(JSON.parse(item.description))))}}>
+                <div style={{overflowX:"auto"}}  dangerouslySetInnerHTML={{__html: draftToHtml(convertToRaw(convertFromRaw(JSON.parse(item?.description))))}}>
 
 </div>
                 </div>
@@ -266,7 +256,7 @@ pauseOnHover
                 showComentar &&
                 <div className="bg-light p-2">
                 <div className="d-flex flex-row align-items-start">
-                    <img className="rounded-circle m-2" src="https://i.imgur.com/RpzrMR2.jpg" width="40"/>
+                    <img className="rounded-circle m-2" src="https://i.imgur.com/RpzrMR2.jpg" style={{width:"40px",height:"40px",objectFit:"cover"}}/>
                     <textarea className="form-control ml-1 shadow-none textarea" value={comment} onChange={(e)=>setComment(e.target.value)} ></textarea>
                 <div className="m-2 align-items-center">
                     <button onClick={handleComentar} className=" colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm   shadow-none ml-4" type="button">Comentar</button>
@@ -310,24 +300,29 @@ const Home = ()=>{
     useEffect(()=>{
         (async()=>{
             const data = await getAllPostsApi();
-            if(data.success)
+            if(data.success){
                 setPosts(data.data)
+            }
         })()
     },[])
 
+   
+
     return (
-        <div className="texttypeLight300 d-flex row" style={{marginTop:"59px"}}>
-             <div className="m-5 col-lg-8 col-md-12 col-sm-12  " > 
+       <div className="container  heigh">
+            <div className="texttypeLight300 d-flex row" style={{marginTop:"59px"}}>
+             <div className="mt-5 mb-5 col-lg-8 col-md-12 col-sm-12  " > 
         {
            posts.length > 0 && 
            posts.map((item,index)=>(
                 
             <Question  key={index} data={item} ></Question>
-        ))
+        )).reverse()
         }
              </div>
             <Half  ></Half>
         </div>
+       </div>
        
     )
 }

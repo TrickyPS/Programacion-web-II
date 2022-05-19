@@ -4,7 +4,7 @@ import Loginindex from "../components/Login/loginindex";
 import './Login.css'
 const Login = ()=>{
     return (
-        <div className="over colorbk">
+        <div className="over colorbk fillImg  ">
              <NavBar></NavBar>
     <Loginindex></Loginindex>
         </div>

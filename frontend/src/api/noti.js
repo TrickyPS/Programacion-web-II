@@ -4,7 +4,7 @@ export const addNotiApi = async({token,text,user})=>{
     try {
         const  response = await axios.post("noti",{text,user},{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });
@@ -28,7 +28,7 @@ export const getNotiApi = async({token})=>{
     try {
         const  response = await axios.get("noti",{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });
@@ -50,9 +50,9 @@ export const getNotiApi = async({token})=>{
 
 export const seeNotiApi = async({token})=>{
     try {
-        const  response = await axios.get("noti",{
+        const  response = await axios.get("noti/see",{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });

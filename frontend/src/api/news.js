@@ -4,7 +4,7 @@ export const addNewsApi = async({token,category,images,title,description,descrip
     try {
         const  response = await axios.post("news",{category,images,title,description,descriptionCorta},{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });

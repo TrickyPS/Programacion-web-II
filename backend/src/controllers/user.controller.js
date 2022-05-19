@@ -18,8 +18,8 @@ exports.getOne = async(req, res) => {
     if(!isValidObjectId(id))
       return res.status(400).send({message:"Envia un id valido de parametro",data:null})
     const user = await userModel.findById(id).populate({path:"favorites",populate:{
-      path:"post"
-    }}).populate("stars").populate("notifications")
+      path:"post",populate:{path:"user"}
+    }}).populate("stars").populate({path:"notifications",populate:{path:"user"}})
     if (!user) 
       return  res.send({ message: "Usuario no existente",data:null }).end();
     res.send({ data: user,message:"Usuario encontrado" });
@@ -52,13 +52,30 @@ exports.update = async(req,res)=>{ //actualizar o baja logica
         const body = req.body
         const user = await userModel.findOneAndUpdate({_id:id},body,{new:true})
         if(!user)
-          return res.status({message: "Error interno del servidor",data:null })
-          else{
-            res.status({message:"success",data:user})
-          }
+          return res.send({message: "Error interno del servidor",data:null })
+         console.log(user);
+          return res.send({message:"success",data:user})
+        
     }catch(error){
         console.log(error);
         res.status(500).send({ message: "Error interno del servidor",data:null });
     }
+};
+
+exports.getUserById = async(req, res) => {
+  try {
+    const { id } = req.params;
+    if(!isValidObjectId(id))
+      return res.status(400).send({message:"Envia un id valido de parametro",data:null})
+    const user = await userModel.findById(id).populate({path:"favorites",populate:{
+      path:"post",populate:{path:"user"}
+    }}).populate("stars").populate({path:"notifications",populate:{path:"user"}})
+    if (!user) 
+      return  res.send({ message: "Usuario no existente",data:null }).end();
+    res.send({ data: user,message:"Usuario encontrado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error interno del servidor",data:null }).end();
+  }
 };
 

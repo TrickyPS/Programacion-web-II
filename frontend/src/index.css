@@ -28,3 +28,33 @@ color: red;
     .texttypeLight300{
       font-family: 'Oswald', sans-serif;
     }
+
+    body{
+      overflow: hidden !important
+    }
+
+    
+::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent; 
+  border-radius: 9999px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(131, 131, 131); 
+}

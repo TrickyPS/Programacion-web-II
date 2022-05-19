@@ -1,6 +1,7 @@
 const postModel = require("./../models/posts.model");
 const imagesModel = require("./../models/images.model");
-const {isValidObjectId} = require("mongoose")
+const {isValidObjectId} = require("mongoose");
+const userModel = require("../models/user.model");
 
 exports.addPost = async(req,res)=>{
     try {
@@ -34,16 +35,21 @@ exports.getOne = async(req,res)=>{
         .populate("category")
         .populate({ 
             path: 'comments',
-            populate: {
-              path: 'acomments',
-              model: 'acomments',
-              populate:{
-                path: 'user',
-                model: 'user',
-              }
-            } 
+            populate: [
+                {
+                    path: 'acomments',
+                    model: 'acomments',
+                    populate:{
+                      path: 'user',
+                      model: 'user',
+                    }
+                  } ,
+                  {
+                      path:"user"
+                  }
+            ]
          })
-        .populate("reactions")
+        .populate("reactions").populate("user")
         if(!post) return res.send({message:"No se encontró el post",data:null})
         return res.send({data:post})
     } catch (error) {
@@ -111,6 +117,55 @@ exports.deletePost = async(req,res)=>{
         const deletePost = await postModel.remove({_id:id});
         return res.send({data:deletePost})
     } catch (error) {
+        console.log({message:"Error interno del servidor"});
+        res.status(500).send({ message: "Error interno del servidor",data:null });
+    }
+}
+
+
+exports.getMyPosts = async(req,res)=>{
+    try {
+        const user = req.user?.id
+        const posts = await postModel.find({user})
+        .populate("images")
+        .populate("category")
+        .populate("comments")
+        .populate("reactions")
+        .populate("user")
+        if(!posts) return res.send({message:"No se encontraron los posts"})
+        return res.send({data:posts})
+    } catch (error) {
+        console.log({message:"Error interno del servidor"});
+        res.status(500).send({ message: "Error interno del servidor",data:null });
+    }
+}
+
+exports.getOtherPosts = async(req,res)=>{
+    try {
+        const user = req.params.id
+        const posts = await postModel.find({user})
+        .populate("images")
+        .populate("category")
+        .populate("comments")
+        .populate("reactions")
+        .populate("user")
+        if(!posts) return res.send({message:"No se encontraron los posts"})
+        return res.send({data:posts})
+    } catch (error) {
+        console.log({message:"Error interno del servidor"});
+        res.status(500).send({ message: "Error interno del servidor",data:null });
+    }
+}
+
+exports.getMyFavorites = async(req,res)=>{
+    try {
+        const user = req.user?.id
+        const posts = await userModel.find({_id:user}).select("favorites").populate("favorites")
+        console.log(posts);
+        if(!posts) return res.send({message:"No se encontraron los posts"})
+        return res.send({data:posts})
+    } catch (error) {
+        console.log(error);
         console.log({message:"Error interno del servidor"});
         res.status(500).send({ message: "Error interno del servidor",data:null });
     }

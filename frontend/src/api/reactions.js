@@ -4,7 +4,7 @@ export const addREactionApi = async({token,like,idPost})=>{
     try {
         const  response = await axios.post("reactions",{idPost,like},{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });
@@ -28,7 +28,7 @@ export const updateReactionApi = async({token,id,like})=>{
     try {
         const  response = await axios.put(`reactions/${id}`,{like},{
             headers:{
-                Authorization:`Bearer ${token}`,
+                Authorization:token,
                 'Content-Type' : 'application/json;charset=UTF-8'
             }
         });

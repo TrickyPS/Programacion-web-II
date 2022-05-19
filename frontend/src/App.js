@@ -13,6 +13,9 @@ import { UserProvider } from "./context/userContext";
 import { PrivateRoute } from "./components/Layout/PrivateRoute";
 import AddCategory from "./pages/addCategory";
 import {StorageProvider,FirebaseAppProvider} from "reactfire";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SeeQuestion from "./pages/SeeQuestion";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB2NcVEvk_wsNWqqbn8Xyn2VgIXbINdR0Q",
@@ -29,6 +32,8 @@ function App() {
   return (
  
      <UserProvider>
+
+<ToastContainer />
        <FirebaseAppProvider firebaseConfig={firebaseConfig} >
        <Routes>
         
@@ -41,7 +46,8 @@ function App() {
         <Route path="/question" element={<PrivateRoute><Question/></PrivateRoute>} />
         <Route path="/ViewNews" element={<ViewNews/>} />
         <Route path="/SeeNews/:id" element={<SeeNews/>} />
-        <Route path="/SeeProfile" element={<SeeProfile/>} />
+        <Route path="/SeeProfile/:id" element={<SeeProfile/>} />
+        <Route path="/SeeQuestion/:id" element={<SeeQuestion/>} />
         <Route path="/addCategory" element={<AddCategory/>} />
         <Route path="/*" element={<Navigate to="/home"></Navigate>} />
       </Routes>

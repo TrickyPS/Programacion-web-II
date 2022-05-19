@@ -30,10 +30,10 @@ const SeeNews = ()=>{
 
 
     return (
-        <div  style={{marginTop:"59px"}}>
+        <div className="container"  style={{marginTop:"59px"}}>
           <div className="d-flex row heigh ">
     
-    <div className="texttypeLight300 m-5 col-lg-8 col-md-12 col-sm-12 ">
+    <div className="texttypeLight300 mt-5 col-lg-8 col-md-12 col-sm-12 ">
       {
         news ?
         <div className="container scrollyca card">
@@ -48,8 +48,8 @@ const SeeNews = ()=>{
         </div>
         :
         <div className=" bg-white d-flex align-items-center justify-content-center" style={{width:"100%",height:"100%"}}> 
-        <div class="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div className="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
       }

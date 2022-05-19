@@ -10,7 +10,8 @@ const Context = createContext({})
 export function UserProvider({children}){
     const [accessToken,setAccessToken] = useState(()=>getAccessTokenApi());
     const [refreshToken,setRefreshToken] = useState(()=>getRefreshTokenApi());
-    const [user,setUser] = useState(null)
+    const [user,setUser] = useState(null);
+    const [search,setSearch] = useState("")
 
     useEffect(()=>{
         if(accessToken && refreshToken){
@@ -26,7 +27,7 @@ export function UserProvider({children}){
     },[accessToken,setAccessToken,refreshToken])
 
     return (
-        <Context.Provider value={{accessToken,setAccessToken,refreshToken,setRefreshToken,user,setUser}}>
+        <Context.Provider value={{accessToken,setAccessToken,refreshToken,setRefreshToken,user,setUser,search,setSearch}}>
             {children}
         </Context.Provider>
     )

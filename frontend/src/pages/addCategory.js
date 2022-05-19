@@ -45,24 +45,13 @@ const AddCategory = ()=>{
 
     return (
         <div className="over colorbk">
-            <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>  
-<ToastContainer />
+    
     
         <NavBar/>
-        <div className=" heigh texttypeLight300 " style={{marginTop:"59px"}}>
+        <div className=" heigh texttypeLight300 container " style={{marginTop:"59px"}}>
         <div className="row heigh  textisize">
         
-<div className="texttypeBebas m-5 editor col-lg-8 align-self">
+<div className="texttypeBebas mt-5 editor col-lg-8 align-self">
     <div className="card">
     <div className="title col-lg-10 mx-auto pt-3 text-center ">
 <h4 className="">Agregar Categoria</h4>
@@ -77,7 +66,7 @@ pauseOnHover
     </div>
     
     <div className="col-lg-10 mx-auto m-5">
-    <div  onClick={handleAddCategory} className="perfil zoom btn colorWhite text-center buttonColorsNav  d-block" style={{marginRight:"15px"}}> Agregar</div>
+    <div  onClick={handleAddCategory} className="perfil zoom btn colorWhite text-center buttonColorsNav  d-grid" style={{marginRight:"15px"}}> Agregar</div>
     </div>
    
     </div>

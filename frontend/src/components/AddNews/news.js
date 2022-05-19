@@ -100,22 +100,11 @@ const AddNews = ()=>{
 
 
     return (
-        <div className=" heigh texttypeLight300 " style={{marginTop:"59px"}}>
-                 <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>  
-<ToastContainer />
+        <div className=" heigh container  texttypeLight300 " style={{marginTop:"59px"}}>
+            
         <div className="row heigh  textisize">
         
-<div className="texttypeBebas m-5 editor col-lg-8 align-self">
+<div className="texttypeBebas mt-5 mb-5 editor col-lg-8 align-self">
     <div className="card">
     <div className="title col-lg-10 mx-auto pt-3 text-center ">
 <h4 className="">Crear Noticia</h4>
@@ -126,7 +115,7 @@ pauseOnHover
             <span>Selecciona la categoria</span>
             </div>
     <select className="form-select" aria-label="Default select example" value={category} onChange={(e)=>setCategory(e.target.value)} >
-  <option selected value={null} >Selecciona una categoría</option>
+  <option  value="" disabled >Selecciona una categoría</option>
         {
             categories.map((item,index)=>(
                 <option key={index} value={item._id}>{item.name}</option>

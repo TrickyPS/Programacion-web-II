@@ -35,7 +35,8 @@ exports.seeNoti = async(req,res)=>{
         const user = req.user?.id;
        
         const notifications = await userModel.findById(user).select("notifications");
-        for(let noti of notifications){
+        const notis = Array.isArray(notifications.notifications)? notifications.notifications : []
+        for(let noti of notis){
             await notificationModel.updateOne({_id:noti},{$set:{seen:true}})
         }
         return res.send({data: true});

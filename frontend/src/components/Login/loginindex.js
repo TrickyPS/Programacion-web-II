@@ -37,7 +37,7 @@ const Login = ()=>{
         draggable: true,
         progress: undefined,
         })
-        setTimeout(()=>navigate("/"),4000) 
+        navigate("/")
         
      }
       else
@@ -57,22 +57,11 @@ const Login = ()=>{
 
     return (
       <div  className="heigh" style={{paddingTop:'0px'}}>
-                   <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>  
-<ToastContainer />
+                
       <div className=" colorbk heigh " style={{marginTop:"59px"}}>
-<div className="row heigh">
-<img src={img} alt=""  className="heigh colorbk d-none d-xs-none d-sm-none d-md-none d-lg-block col-sm-12 col-md-12 col-lg-7 backImg"/>
-<form onSubmit={handleLogin} className="col-md-12 col-lg-5 col-sm-12 backLogin align-self-center justify-content-center justify-content-lg-center texttypeLight300" >
+<div className="row heigh"  >
+<img src={img} alt=""  className="h-auto colorbk d-none d-xs-none d-sm-none d-md-none d-lg-block col-sm-12 col-md-12 col-lg-7 backImg"/>
+<form onSubmit={handleLogin} style={{overflow:"scroll"}} className="col-md-12 col-lg-5 col-sm-12 backLogin align-self-center justify-content-center justify-content-lg-center texttypeLight300" >
  <div className="text-center mb-5 col-lg-8 col-md-10 col-sm-10 mx-auto">
  <h2 className="textisizetitleu texttypeBebas">Inicia sesion en geekup</h2>
  <span className="textisizetitle">La mejor comunidad  de programacion te espera</span>

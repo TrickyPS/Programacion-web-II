@@ -20,8 +20,8 @@ const News = () => {
   // firestore init isn't complete yet
   if (status === 'loading') {
     return <div className=" bg-white d-flex align-items-center justify-content-center" style={{width:"100vw",height:"100vh"}}> 
-      <div class="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div className="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
     </div>
   }

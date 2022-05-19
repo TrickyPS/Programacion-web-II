@@ -8,7 +8,7 @@ exports.ensureAuth = (req, res, next) => {
         return res.status(403).send({message:"No hay header de autenticación."});
     }
 
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.replace(/['"]+/g, '');
 
     try {
         var payload = jwt.decode(token, SECRET_KEY);

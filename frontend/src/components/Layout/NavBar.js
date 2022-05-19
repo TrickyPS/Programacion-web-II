@@ -12,10 +12,13 @@ import defaultImg from "./../../assets/user.png";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../../context/userContext";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../api/config";
+import { seeNotiApi } from "../../api/noti";
+import { getOne } from "../../api/user";
 
 const NavBar = ()=>{
     const [hover,setHover] =useState(false)
-    const {user,setAccessToken,setRefreshToken,setUser} = useContext(Context)
+    const [notiHover,setNotiHover] =useState(false)
+    const {user,setAccessToken,setRefreshToken,setUser,accessToken,search,setSearch} = useContext(Context)
     const navigate = useNavigate()
     const handleLogOut = ()=>{
       localStorage.removeItem(ACCESS_TOKEN);
@@ -25,6 +28,19 @@ const NavBar = ()=>{
       setUser(null)
       navigate("/login")
     }
+
+    const handleSeeNoti = async()=>{
+      if(user){
+          if(user?.notifications.filter(a=>a.seen===false).length > 0){
+             await seeNotiApi({token:accessToken})
+          }
+      }else{
+        navigate("/login")
+      }
+    }
+
+
+
     return ( 
       <nav className="navbar navbar-light bg-light  fixed-top backgroundcolor colorWhite " >   
    
@@ -43,10 +59,10 @@ const NavBar = ()=>{
               </Link>
          <div className="d-flex mx-auto ">
 
-              <input style={{width:"300px"}} className="form-control me-2  d-none d-sm-none d-md-none d-lg-block " type="search" placeholder="Buscar" aria-label="Search"/>
-              <div className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" style={{marginRight:"15px"}}>
+              <input value={search} onChange={(e)=>setSearch(e.target.value)} style={{width:"300px"}} className="form-control me-2  d-none d-sm-none d-md-none d-lg-block " type="search" placeholder="Buscar" aria-label="Search"/>
+              <div onClick={()=>navigate("/ViewNews")} className="perfil zoom btn colorWhite text-center buttonColorsNav d-none d-sm-none d-md-none d-lg-block" style={{marginRight:"15px"}}>
             
-        <span className=""  >Buscar</span>
+        <span   >Buscar</span>
           </div>
          
          </div>
@@ -71,15 +87,41 @@ const NavBar = ()=>{
           </Link>
           {
             user &&
-            <button  className="btn zoom d-none  d-xs-none  d-sm-none d-lg-block" style={{}}>
-            <MdNotificationsActive  className="" style={{fontSize:"30px",color:"white"}} />
+            <button onMouseEnter={()=>{setNotiHover(true);handleSeeNoti()}} onMouseLeave={()=>setNotiHover(false)}  className="btn zoom d-none  d-xs-none  d-sm-none d-lg-block position-relative" >
+              <div className="position-relative">
+              <MdNotificationsActive   className="" style={{fontSize:"30px",color:"white"}} />
+              {
+                user?.notifications.filter(a=>a.seen === false).length > 0 &&
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                     {user?.notifications.filter(a=>a.seen === false).length}
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+              }
+              </div>
+              {
+                notiHover &&
+                <div  className="position-absolute    d-flex align-items-center  flex-column rounded drop-navbar-dark-bg " style={{top:"100%",left:"-250px",width:"300px",height:"300px"}}  > 
+                  <div class="header-noti" >Notificaciones</div>
+                  <div className="w-100 noti-bg h-100 " style={{overflowY:"auto"}} >
+                  {
+                    user.notifications.map((item,index)=>(
+                      <div className={`text-white item-noti d-flex px-2 align-items-center ${item?.seen ? "":"no-seen"} `}  key={index} >
+                        <img src={item?.user.image ? item?.user.image:defaultImg} className="rounded-circle " style={{width:"40px",height:"40px",objectFit:"cover",marginRight:"3px"}} alt="" />
+                        <div> {item?.user.userName} {item.text} </div>
+                        </div>
+                    )).reverse()
+                  }
+                  </div>
+                </div>
+              }
               </button>
+              
           }  
           {
             user && 
             <div className="perfil zoom btn colorWhite position-relative" onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} >
-            <img src={user?.image || defaultImg} width="33" height="33" className=" rounded-circle" style={{marginRight:"10px"}}></img>
-            <span className="" style={{paddingRight:"10px"}}>TrickyPS</span>
+            <img src={user?.image || defaultImg} style={{width:"33px",height:"33px",objectFit:"cover",marginRight:"10px"}} className=" rounded-circle" ></img>
+            <span className="" style={{paddingRight:"10px"}}>{user? user.userName || user.email:""}</span>
            {
              hover &&
           

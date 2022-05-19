@@ -4,7 +4,7 @@ export const addCategory = async({token,name})=>{
     try {
         const  response = await axios.post("category",{name},{
             headers:{
-                Authorization:`Bearer ${token}`
+                Authorization:token
             }
         });
 

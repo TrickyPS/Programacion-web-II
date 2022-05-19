@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {AiFillStar} from "react-icons/ai"
 import { addNotiApi } from "../../api/noti";
+import defaultImg from "./../../assets/user.png"
 
 i18n.dayNames = [
     "Dom",
@@ -63,7 +64,6 @@ export const  CommentComment = ({commentData,userOwner,haveStar,setHaveStar}) =>
 
     const handleComentar = async()=>{
         if(comment.length > 0){
-            debugger
             const response = await addSubCommnet({token:accessToken,comment,idComment:data._id})
             if(response.success){
                 setComment("")
@@ -120,20 +120,10 @@ export const  CommentComment = ({commentData,userOwner,haveStar,setHaveStar}) =>
 
   return (
     <div className="comments  scrollycomments">
-         <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>  
+      
     <div className="together">
     <div className="d-flex flex-row comment-row">
-                <div className="p-2"><span className="round"><img className="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" alt="user" width="40"/></span></div>
+                <div className="p-2"><span className="round"><img className="rounded-circle" src={data?.user.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}} alt="user" /></span></div>
                 <div className="comment-text pt-2 w-100">
                 <span className="d-block font-weight-bold name">{data?.user.userName}</span>
                     <div className="comment-footer"> 
@@ -181,7 +171,7 @@ pauseOnHover
                 <div className="bg-light p-2 row ">
                     <div className="col-1" > </div>
                     <div className="d-flex flex-row align-items-start col-11">
-                        <img className="rounded-circle m-2" src="https://i.imgur.com/RpzrMR2.jpg" width="40"/>
+                        <img className="rounded-circle m-2" src={data?.user.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}}/>
                         <textarea value={comment} onChange={(e)=>setComment(e.target.value)} className="form-control ml-1 shadow-none textarea"></textarea>
                         <div className="m-2 align-items-center">
                             <button onClick={handleComentar} className=" colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm   shadow-none ml-4" type="button">Comentar</button>
@@ -198,7 +188,7 @@ pauseOnHover
                             <div className="col-1"></div>
                           <div className="col-11 d-flex">
                           <div className=""><span className="round">
-                                <img className="rounded-circle " src="https://i.imgur.com/RpzrMR2.jpg" alt="user" width="40" style={{marginRight:"3px"}} /></span>
+                                <img className="rounded-circle " src={item?.user.image || defaultImg}alt="user" style={{width:"40px",height:"40px",objectFit:"cover",marginRight:"3px"}}  /></span>
                                 </div>
                             <div className="comment-text pt-2">
                             <span className="d-block font-weight-bold name">{item?.user.userName}</span>

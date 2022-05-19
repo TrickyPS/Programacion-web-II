@@ -29,7 +29,7 @@ exports.deleteOne = async(req,res)=>{
 
         const user = req.user?.id
         await favoriteModel.deleteOne({_id:id});
-        await userModel.updateOne({_id:user},{$unset:{favorites:id}})
+        await userModel.updateOne({_id:user},{$pull:{favorites:id}})
         return res.send({message: "Favorito eliminado", data:true});
     } catch (error) {
         console.log(error);
