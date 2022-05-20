@@ -19,7 +19,6 @@ export function UserProvider({children}){
       
         if(accessToken && refreshToken){
             const {id} = jwtDecode(accessToken);
-            console.log("actualiza datos de usuario");
             (async()=>{
                const response =  await getOne({token:accessToken,id})
                if(response.success)

@@ -32,7 +32,6 @@ const ReportesPage = ()=>{
         (async()=>{
             const responseRank = await rankStarsApi({token:accessToken})
             if(responseRank.success){
-              console.log(responseRank.data);
                 setRankStar(responseRank.data)
             }
 
@@ -44,7 +43,6 @@ const ReportesPage = ()=>{
     (async()=>{
         const responseRank = await bestReactionsAPi({token:accessToken})
         if(responseRank.success){
-          console.log(responseRank.data);
             setRankReaction(responseRank.data)
         }
 
@@ -56,7 +54,6 @@ useEffect(()=>{
   (async()=>{
       const responseRank = await postsByUserRankApi({token:accessToken})
       if(responseRank.success){
-        console.log(responseRank.data);
          setRankPosts(responseRank.data)
       }
 
@@ -68,7 +65,6 @@ useEffect(()=>{
   (async()=>{
       const responseRank = await bestCategoryApi({token:accessToken})
       if(responseRank.success){
-        console.log(responseRank.data);
          setRankCat(responseRank.data)
       }
 

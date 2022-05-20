@@ -37,7 +37,7 @@ export const getOtherUser = async({id})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
         
     } catch (error) {
-        console.log(error);
+        
         return {message:"Un error ha ourrido. Vuelvelo a intentar",success:false,data:null}
     }
 }

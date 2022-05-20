@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SeeQuestion from "./pages/SeeQuestion";
 import ReportesPage from "./pages/ReportesPage";
+import { PrivateRouteAdmin } from "./components/Layout/PrivateRouteAdmin";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB2NcVEvk_wsNWqqbn8Xyn2VgIXbINdR0Q",
@@ -42,15 +43,15 @@ function App() {
         <Route path="/home" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="/News" element={<PrivateRoute><News/></PrivateRoute>} />
+        <Route path="/News" element={<PrivateRouteAdmin><News/></PrivateRouteAdmin>} />
         <Route path="/perfil" element={<PrivateRoute><Profile/></PrivateRoute>} />
         <Route path="/question" element={<PrivateRoute><Question/></PrivateRoute>} />
         <Route path="/ViewNews" element={<ViewNews/>} />
         <Route path="/SeeNews/:id" element={<SeeNews/>} />
         <Route path="/SeeProfile/:id" element={<SeeProfile/>} />
         <Route path="/SeeQuestion/:id" element={<SeeQuestion/>} />
-        <Route path="/addCategory" element={<AddCategory/>} />
-        <Route path="/reportes" element={<ReportesPage/>} />
+        <Route path="/addCategory" element={<PrivateRouteAdmin><AddCategory/></PrivateRouteAdmin>} />
+        <Route path="/reportes" element={<PrivateRoute><ReportesPage/></PrivateRoute>} />
         <Route path="/*" element={<Navigate to="/home"></Navigate>} />
       </Routes>
        </FirebaseAppProvider>

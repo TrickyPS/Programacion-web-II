@@ -24,7 +24,6 @@ const SeeQuestion = ()=>{
         if(params?.id){
             (async()=>{
                 const response = await getOnePostsApi({id:params.id})
-                console.log(response);
                 if(response.success){
                     setData(response.data)
                 }else{

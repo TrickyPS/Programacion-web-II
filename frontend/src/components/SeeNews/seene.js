@@ -20,7 +20,6 @@ const SeeNews = ()=>{
   useEffect(()=>{
       (async()=>{
         const data = await getOneNewsApi({id:params.id})
-        console.log(data.data);
         if(data.success)
           setNews(data.data)
         else

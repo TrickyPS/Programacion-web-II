@@ -254,7 +254,9 @@ i18n.dayNames = [
                     <img className="rounded-circle  m-2" src={item?.user.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}}/>
                     <div className="d-flex flex-column  ml-3">
                         <span onClick={()=>navigate(`/SeeProfile/${item?.user._id}`)}  className="d-block font-weight-bold name  " style={{paddingLeft:"5px",cursor:"pointer"}}>{item?.user.userName}</span>
-                        <span className="date text-black-50" style={{paddingLeft:"5px"}}>{dateFormat(item?.createdAt,"GMT-6:dddd, mmmm dS, yyyy, h:MM:ss TT").split("6:")[1]}</span></div>
+                        <span className="date text-black-50" style={{paddingLeft:"5px"}}>{item?.category.name}</span>
+                        <span className="date text-black-50" style={{paddingLeft:"5px"}}>{dateFormat(item?.createdAt,"GMT-6:dddd, mmmm dS, yyyy, h:MM:ss TT").split("6:")[1]}</span>
+                        </div>
                 </div>
                 <div className="mt-2">
                 <div style={{overflowX:"auto"}}  dangerouslySetInnerHTML={{__html: draftToHtml(convertToRaw(convertFromRaw(JSON.parse(item?.description))))}}>
@@ -333,7 +335,6 @@ const Home = ()=>{
     useEffect(()=>{
         (async()=>{
             const data = await getAllPostsApi();
-            console.log(data);
             if(data.success){
                 setPosts(data.data)
             }

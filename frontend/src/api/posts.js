@@ -41,7 +41,7 @@ export const getAllPostsApi = async()=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);  if(error?.response.status === 403){
+        if(error?.response.status === 403){
             return {message:"", status:403 ,success:false,data:null}
         }
         return {message:"Ha ocurrido un error",success:false,data:null}
@@ -89,7 +89,7 @@ export const getAllOtherPostsApi = async({id})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);
+       
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }
@@ -134,7 +134,7 @@ export const getOnePostsApi = async({id})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);
+      
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }

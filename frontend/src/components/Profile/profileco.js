@@ -64,10 +64,8 @@ const Profileco = ()=>{
       };
     
       const data = await updateUser({token:accessToken,id:user._id,body:body})
-      console.log(data);
       if(data.success)
       {
-        console.log("is success");
         const responseUser =  await getOne({token:accessToken,id:user._id})
         if(responseUser.success){
          setUser(responseUser.data)
@@ -113,7 +111,7 @@ console.log(error);
 
   const updateImage = async()=>{
     if(!user)
-      console.log("TODO: usuario sin sesion");
+      navigate("/login")
 
     const storage = getStorage()
     const storageRef = ref(storage,`user/${new Date().getTime()}-${img.name}`)
@@ -121,7 +119,6 @@ console.log(error);
   uploadTask.on('state_changed',
 (snapshot) => {
 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-console.log('Upload is ' + progress + '% done');
 },
 (error) => {
   console.log(error);

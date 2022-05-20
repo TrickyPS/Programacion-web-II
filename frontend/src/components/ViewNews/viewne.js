@@ -33,7 +33,6 @@ const AddQuestion = ()=>{
   useEffect(()=>{
     (async()=>{
         const reponse = await getAllCatgeories();
-        console.log(reponse);
         if(reponse.success)
             setCategories(reponse.data)
            

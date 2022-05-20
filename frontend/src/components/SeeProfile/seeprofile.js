@@ -30,7 +30,6 @@ const Profileco = ()=>{
                 }
 
                 const data = await getAllOtherPostsApi({id:params.id})
-                console.log(data.data);
                 if(data.success){
                   setMyQuestions(data?.data)
                   var count = 0;

@@ -23,7 +23,6 @@ const ImageP = ()=>{
        if(accessToken){
         (async()=>{
             const data = await getAllMyPostsApi({token:accessToken})
-            console.log(data.data);
             if(data.success){
               setMyQuestions(data?.data)
               var count = 0;
