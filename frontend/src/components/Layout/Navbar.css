@@ -44,8 +44,8 @@
     background-color: #131414 !important;
     height: 40px !important;
     display:flex ;
+    justify-content: center;
     align-items: center;
-    padding-left: 20px;
   }
 
   .drop-navbar-dark-bg{

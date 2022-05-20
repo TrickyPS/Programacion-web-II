@@ -18,6 +18,9 @@ export const addCategory = async({token,name})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }

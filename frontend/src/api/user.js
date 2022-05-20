@@ -17,7 +17,9 @@ export const getOne = async({token,id})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
         
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Un error ha ourrido. Vuelvelo a intentar",success:false,data:null}
     }
 }
@@ -60,7 +62,9 @@ export const updateUser = async({token,id,body})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
         
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Un error ha ourrido. Vuelvelo a intentar",success:false,data:null}
     }
 }
@@ -82,7 +86,9 @@ export const updateImg = async({token,id,body})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
         
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Un error ha ourrido. Vuelvelo a intentar",success:false,data:null}
     }
 }

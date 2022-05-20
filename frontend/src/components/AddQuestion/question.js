@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { addPreguntaAPi } from "../../api/posts";
 import Context from "../../context/userContext";
 import {getStorage,ref,uploadBytesResumable,getDownloadURL} from "firebase/storage"
+import { useNavigate } from "react-router-dom";
 
 const AddQuestion = ()=>{
 
@@ -19,7 +20,7 @@ const AddQuestion = ()=>{
     const [category,setCategory] = useState("")
     const [description,setDescription] = useState(EditorState.createEmpty())
     const [images,setImages] = useState([])
-
+    const navigate = useNavigate()
     const {accessToken} = useContext(Context)
 
     useEffect(()=>{
@@ -31,7 +32,10 @@ const AddQuestion = ()=>{
     },[])
 
     const handlePublicar = async()=>{
-        if(title && category && description ){
+      if(convertToRaw(description.getCurrentContent()).blocks.length === 1 && convertToRaw(description.getCurrentContent()).blocks[0].text === '')
+        return 
+
+        if(title && category ){
             const response = await addPreguntaAPi({token:accessToken,title,category,description:JSON.stringify(convertToRaw(description.getCurrentContent())),images})
             if(response.success) {
                toast.success(response.message || "Ha ocurrido un error", {
@@ -49,17 +53,30 @@ const AddQuestion = ()=>{
                 setImages([])
                 
              }
-              else
-              toast.error(response.message || "Ha ocurrido un error", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
+           else if(response?.status === 403){
+            toast.info("Inicia sesión para continuar", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+              navigate("/login")
+           }else{
+            toast.error(response.message || "Ha ocurrido un error", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+           }
         }
+        
         }
 
         function uploadCallbackHandler(file) {

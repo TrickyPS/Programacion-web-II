@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaRocket } from 'react-icons/fa';
 import { BiExit ,BiNews,BiCategory} from 'react-icons/bi';
+import { BsTable} from 'react-icons/bs';
 import './Navbar.css';
 import imgLogo from "./../../assets/logo-blanco.png";
 import defaultImg from "./../../assets/user.png";
@@ -44,7 +45,7 @@ const NavBar = ()=>{
     return ( 
       <nav className="navbar navbar-light bg-light  fixed-top backgroundcolor colorWhite " >   
    
-      <div className="container-fluid texttypeBebas d-flex" > 
+      <div className="container-fluid  texttypeBebas d-flex" > 
          <Link className="navbar-brand  colorWhite" to="/" style={{fontSize:"25px"}} >
            <img src={imgLogo} width={110} alt="" /></Link>
 
@@ -92,16 +93,16 @@ const NavBar = ()=>{
               <MdNotificationsActive   className="" style={{fontSize:"30px",color:"white"}} />
               {
                 user?.notifications.filter(a=>a.seen === false).length > 0 &&
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                      {user?.notifications.filter(a=>a.seen === false).length}
-                    <span class="visually-hidden">unread messages</span>
+                    <span className="visually-hidden">unread messages</span>
                 </span>
               }
               </div>
               {
                 notiHover &&
                 <div  className="position-absolute    d-flex align-items-center  flex-column rounded drop-navbar-dark-bg " style={{top:"100%",left:"-250px",width:"300px",height:"300px"}}  > 
-                  <div class="header-noti" >Notificaciones</div>
+                  <div className="header-noti" >Notificaciones</div>
                   <div className="w-100 noti-bg h-100 " style={{overflowY:"auto"}} >
                   {
                     user.notifications.map((item,index)=>(
@@ -119,7 +120,7 @@ const NavBar = ()=>{
           }  
           {
             user && 
-            <div className="perfil zoom btn colorWhite position-relative" onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} >
+            <div className="perfil zoom btn  colorWhite position-relative" onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} >
             <img src={user?.image || defaultImg} style={{width:"33px",height:"33px",objectFit:"cover",marginRight:"10px"}} className=" rounded-circle" ></img>
             <span className="" style={{paddingRight:"10px"}}>{user? user.userName || user.email:""}</span>
            {
@@ -131,8 +132,10 @@ const NavBar = ()=>{
                <>
                  <div onClick={()=>navigate("/news")}  className="text-white  w-100 drop-navbar-dark " ><BiNews style={{marginRight:"3px"}} /> Noticia  </div>
                 <div onClick={()=>navigate("/addCategory")}  className="text-white  w-100 drop-navbar-dark " ><BiCategory style={{marginRight:"3px"}} /> Categoria  </div>
+                
                </>
               }
+              <div onClick={()=>navigate("/reportes")}  className="text-white   w-100 drop-navbar-dark " ><BsTable style={{marginRight:"3px"}} /> Estadísticas  </div>
                <div onClick={handleLogOut} className="text-danger  w-100  drop-navbar-dark" ><BiExit style={{marginRight:"3px"}} /> Salir  </div>
                
              
@@ -162,25 +165,25 @@ const NavBar = ()=>{
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 mb-4" >
 
               <li className="nav-item ">
-                <a className="btn nav-link active btn zoom colorWhite" aria-current="page" href="#">Explorar</a>
+                <Link to="/home" className="btn nav-link active btn zoom colorWhite" aria-current="page" href="#">Explorar</Link>
               </li>
               
               <li className="nav-item ">
-                <a className="btn nav-link active btn zoom colorWhite" aria-current="page" href="#">Noticias</a>
+                <Link to="/ViewNews" className="btn nav-link active btn zoom colorWhite" aria-current="page" href="#">Noticias</Link>
               </li>
               
               <li className="nav-item">
-                <a className="nav-link btn zoom colorWhite" href="#">Preguntar</a>
+                <Link to="/question" className="nav-link btn zoom colorWhite" href="#">Preguntar</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link btn zoom colorWhite" href="#">Mi Perfil</a>
+                <Link to="perfil" className="nav-link btn zoom colorWhite" href="#">Mi Perfil</Link>
               </li>
             </ul>
             <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-              <div className="perfil zoom btn colorWhite text-center buttonColorsNav" >
+              <input value={search} onChange={(e)=>setSearch(e.target.value)} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+              <div onClick={()=>navigate("/ViewNews")}  className="perfil zoom btn colorWhite text-center buttonColorsNav" >
             
-        <span className=""  >Buscar</span>
+            <span className=""  >Buscar</span>
           </div>
             </form>
           </div>

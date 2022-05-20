@@ -6,32 +6,47 @@
 
 import React, { useContext,useEffect,useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Context from "../../context/userContext";
 import defaultImg from "./../../assets/user.png"
 import { getAllMyPostsApi } from "../../api/posts";
+import { getAllCatgeories } from "../../api/category";
 
 const ImageP = ()=>{
 
     const {user,accessToken} = useContext(Context)
     const [myQuestions,setMyQuestions] = useState([])
     const [reactions,setReactions] = useState(0)
+    const [categories,setCategories] = useState([])
+    const navigate = useNavigate()
     useEffect(()=>{
+       if(accessToken){
         (async()=>{
-         const data = await getAllMyPostsApi({token:accessToken})
-         console.log(data.data);
-         if(data.success){
-           setMyQuestions(data?.data)
-           var count = 0;
-           data.data.forEach(item=>{
-               count += item.reactions.length;
-           })
-           setReactions(count)
-         }
-         
-        })()
+            const data = await getAllMyPostsApi({token:accessToken})
+            console.log(data.data);
+            if(data.success){
+              setMyQuestions(data?.data)
+              var count = 0;
+              data.data.forEach(item=>{
+                  count += item.reactions.length;
+              })
+              setReactions(count)
+            }
+            
+           })()
+       }
      
        },[])
+
+       useEffect(()=>{
+       
+            (async()=>{
+                const data = await getAllCatgeories();
+                if(data.success)
+                    setCategories(data.data)
+            })()
+        
+    },[])
     
 
     return ( 
@@ -75,17 +90,16 @@ const ImageP = ()=>{
 
 <div className=" text-center">
 <div className="prim  row c">
-  <div className="m-1">
-  <a href="">Noticia de programacion</a>
-  </div>
+ 
+ {
+     categories.map((item,index)=>(
+        <div key={index} className="m-1">
+        <Link to="/ViewNews" >{item.name}</Link>
+        </div>
+     ))
+ }
 
-  <div className="m-1">
-  <a href="">Noticia de programacion</a>
-  </div>
-
-  <div className="m-1">
-  <a href="">Noticia de programacion</a>
-  </div>
+ 
 </div>
 
 </div>

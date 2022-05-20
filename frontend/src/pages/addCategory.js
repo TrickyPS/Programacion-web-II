@@ -7,12 +7,13 @@ import { addCategory } from '../api/category';
 import Context from '../context/userContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const AddCategory = ()=>{
 
     const {accessToken} = useContext(Context)
     const [name,setName] = useState("")
-
+    const navigate = useNavigate()
     const handleAddCategory=async()=>{
         if(name){
             const response = await addCategory({token:accessToken,name})
@@ -29,16 +30,28 @@ const AddCategory = ()=>{
                 setName("")
                 
              }
-              else
-              toast.error(response.message || "Ha ocurrido un error", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
+              else if(response?.status === 403){
+                toast.info("Inicia sesión para continuar", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  });
+                  navigate("/login")
+               }else{
+                toast.error(response.message || "Ha ocurrido un error", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  });
+               }
         }
     }
 

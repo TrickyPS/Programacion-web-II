@@ -16,6 +16,7 @@ import {StorageProvider,FirebaseAppProvider} from "reactfire";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SeeQuestion from "./pages/SeeQuestion";
+import ReportesPage from "./pages/ReportesPage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB2NcVEvk_wsNWqqbn8Xyn2VgIXbINdR0Q",
@@ -49,6 +50,7 @@ function App() {
         <Route path="/SeeProfile/:id" element={<SeeProfile/>} />
         <Route path="/SeeQuestion/:id" element={<SeeQuestion/>} />
         <Route path="/addCategory" element={<AddCategory/>} />
+        <Route path="/reportes" element={<ReportesPage/>} />
         <Route path="/*" element={<Navigate to="/home"></Navigate>} />
       </Routes>
        </FirebaseAppProvider>

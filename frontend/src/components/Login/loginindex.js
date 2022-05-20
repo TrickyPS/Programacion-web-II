@@ -13,15 +13,25 @@ const Login = ()=>{
     const [password,setPassword] = useState("")
     const [loadin,setLoading] = useState(false)
     const {setAccessToken, setRefreshToken} = useContext(Context)
+    const [vEmail,setVEmail] = useState(false)
+    const [vPass,setVPass] = useState(false)
     const navigate = useNavigate()
 
     const handleLogin = async(e)=>{
         e.preventDefault()
-        console.log("entra");
+
+        if(password.length < 8){
+            setVPass(true)
+          }else
+            setVPass(false)
+      
+          if(email === ""){
+            setVEmail(true)
+          }else
+          setVEmail(false)
         setLoading(true)
     if(email && password && password.length >= 8){
       const data = await login({email,password})
-      console.log(data);
       if(data.success)
      {
         setAccessToken(data.data?.accessToken)
@@ -75,6 +85,12 @@ const Login = ()=>{
                        <input type="email" className="form-control inputwidh " name="correosign" value={email} onChange={(e)=>setEmail(e.target.value)}
                            placeholder="Ingresa tu correo" />
                    </div>
+                   {
+                          vEmail &&
+                          <div className="text-center">
+                            <span className="text-danger"  >El correo es requerido</span>
+                          </div>
+                        }
 
                    <div className="form-group p-4 col-lg-8 col-md-10 col-sm-10 col-xs-4 mx-auto">
                        <div className="pb-2">
@@ -85,8 +101,8 @@ const Login = ()=>{
                            placeholder="Ingresa tu contraseña" />
                    </div>
                    <div className="text-center">
-                   <span >Tu contraseña debe de ser menor a 8 caracteres</span>
-                   </div>
+                        <span className={`${vPass && "text-danger"}`}  >Tu contraseña debe tener mínimo  8 carácteres</span>
+                        </div>
 
                
                    <div className="grupo text-center pt-3 ">

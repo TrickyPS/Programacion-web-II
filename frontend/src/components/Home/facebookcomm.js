@@ -125,7 +125,7 @@ export const  CommentComment = ({commentData,userOwner,haveStar,setHaveStar}) =>
     <div className="d-flex flex-row comment-row">
                 <div className="p-2"><span className="round"><img className="rounded-circle" src={data?.user.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}} alt="user" /></span></div>
                 <div className="comment-text pt-2 w-100">
-                <span className="d-block font-weight-bold name">{data?.user.userName}</span>
+                <span onClick={()=>navigate(`/SeeProfile/${data?.user._id}`)}  style={{cursor:"pointer"}} className="d-block font-weight-bold name">{data?.user.userName}</span>
                     <div className="comment-footer"> 
                     <span className="date">{dateFormat(
                 data?.createdAt,"GMT-6:dddd, mmmm dS, yyyy, h:MM:ss TT"
@@ -191,7 +191,7 @@ export const  CommentComment = ({commentData,userOwner,haveStar,setHaveStar}) =>
                                 <img className="rounded-circle " src={item?.user.image || defaultImg}alt="user" style={{width:"40px",height:"40px",objectFit:"cover",marginRight:"3px"}}  /></span>
                                 </div>
                             <div className="comment-text pt-2">
-                            <span className="d-block font-weight-bold name">{item?.user.userName}</span>
+                            <span onClick={()=>navigate(`/SeeProfile/${item?.user._id}`)} style={{cursor:"pointer"}} className="d-block font-weight-bold name">{item?.user.userName}</span>
                                 <div className="comment-footer"> 
                                 <span className="date">{dateFormat(item?.createdAt,"GMT-6:dddd, mmmm dS, yyyy, h:MM:ss TT").split("6:")[1]}</span> 
                                 <span className="action-icons"> <a href="#" data-abc="true"><i className="fa fa-pencil"></i></a> <a href="#" data-abc="true"><i className="fa fa-rotate-right"></i></a> <a href="#" data-abc="true"><i className="fa fa-heart"></i></a> </span> </div>

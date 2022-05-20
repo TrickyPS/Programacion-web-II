@@ -12,6 +12,7 @@ import { addNewsApi } from "../../api/news";
 import { useContext } from "react";
 import Context from "../../context/userContext";
 import{EditorState, convertToRaw} from "draft-js"
+import { useNavigate } from "react-router-dom";
 
 const AddNews = ()=>{
     
@@ -23,7 +24,7 @@ const AddNews = ()=>{
     const [description,setDescription] = useState(EditorState.createEmpty())
     const [descriptionCorta,setDescriptionCorta] = useState("")
     const [images,setImages] = useState([])
-
+    const navigate = useNavigate()
     useEffect(()=>{
         (async()=>{
             const data = await getAllCatgeories();
@@ -33,6 +34,9 @@ const AddNews = ()=>{
     },[])
 
     const handlePublicar = async()=>{
+
+      if(convertToRaw(description.getCurrentContent()).blocks.length === 1 && convertToRaw(description.getCurrentContent()).blocks[0].text === '')
+      return 
      
         if(title && category && description &&  descriptionCorta){
             const response = await addNewsApi({token:accessToken,title,category,descriptionCorta,description:JSON.stringify(convertToRaw(description.getCurrentContent())),images})
@@ -53,7 +57,18 @@ const AddNews = ()=>{
                 setDescriptionCorta("")
                 
              }
-              else
+             else if(response?.status === 403){
+              toast.info("Inicia sesión para continuar", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+                navigate("/login")
+             }else{
               toast.error(response.message || "Ha ocurrido un error", {
                 position: "top-right",
                 autoClose: 5000,
@@ -63,6 +78,7 @@ const AddNews = ()=>{
                 draggable: true,
                 progress: undefined,
                 });
+             }
         }
         }
     

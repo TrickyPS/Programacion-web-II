@@ -17,7 +17,6 @@ export function getRefreshTokenApi(){
     if(!refreshToken || refreshToken === "null"){
         return null;
     }
-
     return willExpireToken(refreshToken) ? null : refreshToken;
 }
 

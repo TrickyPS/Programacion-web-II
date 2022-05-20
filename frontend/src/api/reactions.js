@@ -19,7 +19,9 @@ export const addREactionApi = async({token,like,idPost})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }
@@ -43,7 +45,9 @@ export const updateReactionApi = async({token,id,like})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }

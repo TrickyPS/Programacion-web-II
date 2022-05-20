@@ -82,17 +82,28 @@ const Profileco = ()=>{
          progress: undefined,
          }) 
       }
-       else{
-       toast.error(data.message || "Ha ocurrido un error", {
-         position: "top-right",
-         autoClose: 5000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         });
-     }
+      if(data?.status === 403){
+        toast.info("Inicia sesión para continuar", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+          navigate("/login")
+       }else{
+        toast.error(data.message || "Ha ocurrido un error", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+       }
     
     }
    }catch(error){
@@ -139,7 +150,18 @@ console.log('Upload is ' + progress + '% done');
         progress: undefined,
         }) 
      }
-      else{
+     if(data?.status === 403){
+      toast.info("Inicia sesión para continuar", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+        navigate("/login")
+     }else{
       toast.error(data.message || "Ha ocurrido un error", {
         position: "top-right",
         autoClose: 5000,
@@ -149,7 +171,7 @@ console.log('Upload is ' + progress + '% done');
         draggable: true,
         progress: undefined,
         });
-    }
+     }
    })()
 
 });
@@ -163,6 +185,18 @@ const quitarFavorito =async(post)=>{
   if(response.success){
     navigate(0)
   }
+  else if(response?.status === 403){
+    toast.info("Inicia sesión para continuar", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+      navigate("/login")
+   }
 }
  
     return (

@@ -125,17 +125,28 @@ i18n.dayNames = [
              })
              
           }
-           else{
-           toast.error(response.message || "Ha ocurrido un error", {
-             position: "top-right",
-             autoClose: 5000,
-             hideProgressBar: false,
-             closeOnClick: true,
-             pauseOnHover: true,
-             draggable: true,
-             progress: undefined,
-             });
-            }
+          else if(response?.status === 403){
+            toast.info("Inicia sesión para continuar", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+              navigate("/login")
+           }else{
+            toast.error(response.message || "Ha ocurrido un error", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+           }
 
             }else{
                
@@ -156,17 +167,28 @@ i18n.dayNames = [
              })
              
           }
-           else{
-           toast.error(response.message || "Ha ocurrido un error", {
-             position: "top-right",
-             autoClose: 5000,
-             hideProgressBar: false,
-             closeOnClick: true,
-             pauseOnHover: true,
-             draggable: true,
-             progress: undefined,
-             });
-            }
+          else if(response?.status === 403){
+            toast.info("Inicia sesión para continuar", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+              navigate("/login")
+           }else{
+            toast.error(response.message || "Ha ocurrido un error", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+           }
             }
      }else
         navigate("/login")
@@ -196,17 +218,28 @@ i18n.dayNames = [
                })
                
             }
-             else{
-             toast.error(response.message || "Ha ocurrido un error", {
-               position: "top-right",
-               autoClose: 5000,
-               hideProgressBar: false,
-               closeOnClick: true,
-               pauseOnHover: true,
-               draggable: true,
-               progress: undefined,
-               });
-              }
+            else if(response?.status === 403){
+                toast.info("Inicia sesión para continuar", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  });
+                  navigate("/login")
+               }else{
+                toast.error(response.message || "Ha ocurrido un error", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  });
+               }
               
        }else
           navigate("/login")
@@ -247,7 +280,7 @@ i18n.dayNames = [
                 </div>
                {
                    item?.comments.length > 0 &&
-                   <div onClick={()=>setShowComentarios(!showComentarios)} className="like p-2 cursor"><i className="fa fa-commenting-o"></i><span className="ml-1">{showComentarios ? "Ocultar comentarios":"Ver Comentarios"}</span></div>
+                   <div onClick={()=>setShowComentarios(!showComentarios)} className="like p-2 cursor"><i className="fa fa-commenting-o"></i><span className="ml-1">{showComentarios ? "Ocultar comentarios":`Ver Comentarios(${ item?.comments.length})`}</span></div>
                }
 
                 </div>
@@ -300,6 +333,7 @@ const Home = ()=>{
     useEffect(()=>{
         (async()=>{
             const data = await getAllPostsApi();
+            console.log(data);
             if(data.success){
                 setPosts(data.data)
             }

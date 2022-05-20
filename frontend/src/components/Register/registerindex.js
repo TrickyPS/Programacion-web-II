@@ -13,17 +13,34 @@ const Register = ()=>{
   const [password,setPassword] = useState("")
   const [loadin,setLoading] = useState(false)
   const navigate = useNavigate()
+  const [vUser,setVUser] = useState(false)
+  const [vEmail,setVEmail] = useState(false)
+  const [vPass,setVPass] = useState(false)
  
 
   const handleRegister = async(e)=>{
     e.preventDefault();
     setLoading(true)
+    if(password.length < 8){
+      setVPass(true)
+    }else
+      setVPass(false)
+    if(userName === ""){
+      setVUser(true)
+    }else
+    setVUser(false)
+
+    if(email === ""){
+      setVEmail(true)
+    }else
+    setVEmail(false)
     if(userName && email && password && password.length >= 8){
+      
       const data = await register({userName,email,password})
-      console.log(data);
+      
       if(data.success)
      {
-       toast.success(data.message || "Ha ocurrido un error", {
+       toast.success(data.message || "Iniciaste sesión correctamente", {
         position: "top-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -68,6 +85,13 @@ const Register = ()=>{
                                 placeholder="Ingresa como te gustaría que te conozcan" />
                         </div>
 
+                        {
+                          vUser &&
+                          <div className="text-center">
+                            <span className="text-danger"  >El nombre de usuario es requerido</span>
+                          </div>
+                        }
+
                         <div className="form-group p-4 col-lg-8 col-md-10 col-sm-10 col-xs-4 mx-auto">
                             <div className="pb-2">
                             <span className="textisize paddingbot ">Correo</span>
@@ -76,6 +100,12 @@ const Register = ()=>{
                             <input type="email" className="form-control inputwidh " name="correosign" value={email} onChange={(e)=>setEmail(e.target.value)}
                                 placeholder="Ingresa tu correo" />
                         </div>
+                        {
+                          vEmail &&
+                          <div className="text-center">
+                            <span className="text-danger"  >El correo es requerido</span>
+                          </div>
+                        }
 
                         <div className="form-group p-4 col-lg-8 col-md-10 col-sm-10 col-xs-4 mx-auto">
                             <div className="pb-2">
@@ -86,7 +116,7 @@ const Register = ()=>{
                                 placeholder="Ingresa tu contraseña" />
                         </div>
                         <div className="text-center">
-                        <span >Tu contraseña debe tener mínimo  8 carácteres</span>
+                        <span className={`${vPass && "text-danger"}`}  >Tu contraseña debe tener mínimo  8 carácteres</span>
                         </div>
 
                    <div className="grupo text-center pt-3 ">

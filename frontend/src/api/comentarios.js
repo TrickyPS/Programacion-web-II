@@ -19,7 +19,9 @@ export const addCommentApi = async({token,comment,idPost})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }
@@ -81,7 +83,9 @@ export const addSubCommnet = async({token,comment,idComment})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }
@@ -105,7 +109,9 @@ export const addStarApi = async({token,idComment,idUser})=>{
         return {message:response.data?.message || "Ha ocurrido un problema",success:false,data:null}
 
     } catch (error) {
-        console.log(error);
+        if(error?.response.status === 403){
+            return {message:"", status:403 ,success:false,data:null}
+        }
         return {message:"Ha ocurrido un error",success:false,data:null}
     }
 }
