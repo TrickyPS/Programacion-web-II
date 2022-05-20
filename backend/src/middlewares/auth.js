@@ -1,15 +1,23 @@
-const jwt = require("jsonwebtoken")
+const jwt = require('jwt-simple');
+const moment = require('moment');
 
-const auth = (req,res,next)=>{
-    try {
-        const token = req.headers.authorization.split(" ")[1]
-        if(!token) res.statusCode(401).end;
-        res.validateToken = token;
-        next()
+const SECRET_KEY = "0a1b2c3d4e";
 
-    } catch (error) {
-        console.log(error);
+exports.ensureAuth = (req, res, next) => {
+    if(!req.headers.authorization){
+        return res.status(403).send({message:"No hay header de autenticación."});
     }
-}
+    const token = req.headers.authorization.replace(/['"]+/g, '');
+    try {
+        var payload = jwt.decode(token, SECRET_KEY);
+        if(payload.exp <= moment.unix()){
+            return res.status(403).send({message: "El token ha expirado."});
+        }
+    } catch (ex) {
+        console.log(ex);
+        return res.status(403).send({message: "Token inválido."});
+    }
 
-module.exports = auth
+    req.user = payload;
+    next();
+}

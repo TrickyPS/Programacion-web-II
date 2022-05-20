@@ -6,6 +6,9 @@ const news = new Schema({
   description: {
     type: String,
   },
+  descriptionCorta: {
+    type: String,
+  },
   category: {
     type: Types.ObjectId,
     ref:"category"

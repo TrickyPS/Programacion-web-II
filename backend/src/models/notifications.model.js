@@ -9,9 +9,9 @@ const notifications = new Schema({
         type: Boolean,
         default:false
     },
-    text: [{
+    text: {
         type: String,
-    }],
+    },
     user: {
         type: Types.ObjectId,
         ref : "user"
