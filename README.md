@@ -1,7 +1,7 @@
-# Bienvenid@ a [GeekUP](https://geekup.com)
+# Bienvenid@ a [GeekUP](https://geekup.onrender.com)
 
 
-[![GeekUP](/frontend/src/assets/logo-azul.png)](https://geekup.com)
+[![GeekUP](/frontend/src/assets/logo-azul.png)](https://geekup.onrender.com)
 
 
 
@@ -9,6 +9,7 @@
  - [Pedro Ángel Ramirez Villarreal 1738240](https://github.com/TrickyPS)
  - [David Alejandro Montemayor Veliz 1732228](https://github.com/DavidAlMove)
  - [Jesus Angel Paredes Sauceda 1937860](https://github.com/Angel03paredes)
+
 
 
 ### Descripción del proyecto 🚀
