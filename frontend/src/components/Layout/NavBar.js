@@ -128,7 +128,7 @@ const NavBar = ()=>{
           
                <div  className="position-absolute   w-100 d-flex align-items-center justify-content-center flex-column  drop-navbar-dark-bg " style={{top:"100%"}}  > 
                 {
-                user.userType === 0 &&
+                user.userType === 1 &&
                <>
                  <div onClick={()=>navigate("/news")}  className="text-white  w-100 drop-navbar-dark " ><BiNews style={{marginRight:"3px"}} /> Noticia  </div>
                 <div onClick={()=>navigate("/addCategory")}  className="text-white  w-100 drop-navbar-dark " ><BiCategory style={{marginRight:"3px"}} /> Categoria  </div>
