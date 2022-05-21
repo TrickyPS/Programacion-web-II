@@ -89,10 +89,10 @@ export const  CommentComment = ({commentData,userOwner,haveStar,setHaveStar}) =>
                         setData(newComments.data)
                     }
                     setHaveStar(true)
-                    if(userOwner !== user?._id ){
+                    if(userOwner === user?._id ){
                        
                         var text = "ha escogido tú respuesta como la mejor."
-                        await addNotiApi({token:accessToken,text,user:userOwner})
+                        await addNotiApi({token:accessToken,text,user:data?.user._id})
                     }
                     toast.success(response.message, {
                         position: "top-right",
@@ -156,7 +156,7 @@ export const  CommentComment = ({commentData,userOwner,haveStar,setHaveStar}) =>
 
                     {
                         data?.star &&
-                        <div onClick={handleEstrella} className="like p-2 text-success cursor"><span className="ml-1">Mejor respuesta<AiFillStar/></span></div>
+                        <div  className="like p-2 text-success cursor"><span className="ml-1">Mejor respuesta<AiFillStar/></span></div>
                     }
 
                 </div>

@@ -101,14 +101,12 @@ i18n.dayNames = [
       if(user){
             if(item.reactions.filter(a=>a.user === user._id).length > 0){
                 var isLike = false;
-               isLike = item.reactions.filter(a=>a.user === user._id).reduce(b=>{
-                    if(b.like)
-                        return false
-                    else
-                    return true
+               item.reactions.filter(a=>a.user === user._id).map(b=>{
+                    if(b.user === user._id)
+                    isLike = b;
                 })
-
-                const response = await updateReactionApi({token:accessToken,like:isLike,id:user._id})
+                const response = await updateReactionApi({token:accessToken,like:!isLike?.like,id:isLike?._id})
+                
         if(response.success) {
             const reponsePost = await getAllCommentsApi({id:item._id});
             if(reponsePost.success){
@@ -255,10 +253,13 @@ i18n.dayNames = [
                     <div className="d-flex flex-column  ml-3">
                         <span onClick={()=>navigate(`/SeeProfile/${item?.user._id}`)}  className="d-block font-weight-bold name  " style={{paddingLeft:"5px",cursor:"pointer"}}>{item?.user.userName}</span>
                         <span className="date text-black-50" style={{paddingLeft:"5px"}}>{item?.category.name}</span>
+                        
                         <span className="date text-black-50" style={{paddingLeft:"5px"}}>{dateFormat(item?.createdAt,"GMT-6:dddd, mmmm dS, yyyy, h:MM:ss TT").split("6:")[1]}</span>
+                        
                         </div>
                 </div>
                 <div className="mt-2">
+                <span className="h6 fw-bolder " style={{paddingLeft:"5px"}}>{item?.title}</span>
                 <div style={{overflowX:"auto"}}  dangerouslySetInnerHTML={{__html: draftToHtml(convertToRaw(convertFromRaw(JSON.parse(item?.description))))}}>
 
 </div>
@@ -291,7 +292,7 @@ i18n.dayNames = [
                 showComentar &&
                 <div className="bg-light p-2">
                 <div className="d-flex flex-row align-items-start">
-                    <img className="rounded-circle m-2" src="https://i.imgur.com/RpzrMR2.jpg" style={{width:"40px",height:"40px",objectFit:"cover"}}/>
+                    <img className="rounded-circle m-2" src={user?.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}}/>
                     <textarea className="form-control ml-1 shadow-none textarea" value={comment} onChange={(e)=>setComment(e.target.value)} ></textarea>
                 <div className="m-2 align-items-center">
                     <button onClick={handleComentar} className=" colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm   shadow-none ml-4" type="button">Comentar</button>

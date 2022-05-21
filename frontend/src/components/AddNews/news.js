@@ -25,6 +25,7 @@ const AddNews = ()=>{
     const [descriptionCorta,setDescriptionCorta] = useState("")
     const [images,setImages] = useState([])
     const navigate = useNavigate()
+    const [loadin,setLoading] = useState(false)
     useEffect(()=>{
         (async()=>{
             const data = await getAllCatgeories();
@@ -34,7 +35,7 @@ const AddNews = ()=>{
     },[])
 
     const handlePublicar = async()=>{
-
+      setLoading(true)
       if(convertToRaw(description.getCurrentContent()).blocks.length === 1 && convertToRaw(description.getCurrentContent()).blocks[0].text === '')
       return 
      
@@ -80,6 +81,7 @@ const AddNews = ()=>{
                 });
              }
         }
+        setLoading(false)
         }
     
     
@@ -169,8 +171,8 @@ editorState={description} onEditorStateChange={setDescription}
 
 
     </div>
-    <div className="col-lg-10 mx-auto m-5 ">
-    <div onClick={handlePublicar} className="perfil zoom btn colorWhite text-center buttonColorsNav  d-lg-block " style={{marginRight:"15px"}}> Publicar</div>
+    <div className="col-lg-10 mx-auto mb-5" style={{marginTop:"10rem"}}>
+    <div onClick={handlePublicar} className={` ${loadin && "disabled"} perfil zoom btn colorWhite text-center buttonColorsNav d-grid`} style={{marginRight:"15px"}}> {loadin? "Espere...":"Publicar"}</div>
     </div>
    
     </div>

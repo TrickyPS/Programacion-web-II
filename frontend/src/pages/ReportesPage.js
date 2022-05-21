@@ -219,7 +219,7 @@ useEffect(()=>{
        <tr>
          <th>Usuario</th>
          <th>Posición</th>
-         <th>Reacciones</th>
+         <th>Preguntas</th>
        </tr>
      </thead>
      <tbody>

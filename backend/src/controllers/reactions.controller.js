@@ -28,16 +28,17 @@ exports.updateReaction = async (req, res) => {
   try {
     const { id } = req.params;
     const { body } = req;
-    const reaction = await reactionsModel.findOne({user:id});
+    const reaction = await reactionsModel.findOne({_id:id});
     if (!reaction) 
       return res.send({ message: "No se encontró la reacción" ,data:null});
     const updatedReaction = await reactionsModel.findOneAndUpdate(
-      { user: id },
+      { _id: id },
       { $set: body },
       { new: true }
     );
     return res.send({ data: updatedReaction });
   } catch (error) {
+    console.log(error);
     console.log({ message: "Error interno del servidor" });
     res.status(500).send({ message: "Error interno del servidor",data:null });
   }

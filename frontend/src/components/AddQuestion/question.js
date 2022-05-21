@@ -22,6 +22,7 @@ const AddQuestion = ()=>{
     const [images,setImages] = useState([])
     const navigate = useNavigate()
     const {accessToken} = useContext(Context)
+    const [loadin,setLoading] = useState(false)
 
     useEffect(()=>{
         (async()=>{
@@ -32,6 +33,7 @@ const AddQuestion = ()=>{
     },[])
 
     const handlePublicar = async()=>{
+      setLoading(true)
       if(convertToRaw(description.getCurrentContent()).blocks.length === 1 && convertToRaw(description.getCurrentContent()).blocks[0].text === '')
         return 
 
@@ -76,7 +78,7 @@ const AddQuestion = ()=>{
               });
            }
         }
-        
+        setLoading(false)
         }
 
         function uploadCallbackHandler(file) {
@@ -113,7 +115,7 @@ const AddQuestion = ()=>{
         <div className="row  heigh texttypeBebas textisize">
         
 <div className="editor mt-5 mb-5 col-lg-8 align-self">
-    <div className="card">
+    <div className="card " style={{marginBottom:"300px !important"}}>
     <div className="title col-lg-10 mx-auto pt-4 text-center ">
 <h4 className="">Crea tu pregunta</h4>
     </div>
@@ -152,8 +154,8 @@ editorState={description} onEditorStateChange={setDescription}
 />
 
     </div>
-    <div className="col-8 mx-auto m-5">
-    <div onClick={handlePublicar} className="perfil zoom btn colorWhite text-center buttonColorsNav d-grid" style={{marginRight:"15px"}}> Publicar</div>
+    <div className="col-8 mx-auto mb-5" style={{marginTop:"10rem"}} >
+    <div onClick={handlePublicar} className={` ${loadin && "disabled"} perfil zoom btn colorWhite text-center buttonColorsNav d-grid`} style={{marginRight:"15px"}}> {loadin? "Espere...":"Publicar"}</div>
     </div>
    
     </div>
