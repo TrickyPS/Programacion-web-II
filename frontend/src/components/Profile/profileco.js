@@ -80,7 +80,7 @@ const Profileco = ()=>{
          progress: undefined,
          }) 
       }
-      if(data?.status === 403){
+      else if(data?.status === 403){
         toast.info("Inicia sesión para continuar", {
           position: "top-right",
           autoClose: 5000,
@@ -147,7 +147,7 @@ const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         progress: undefined,
         }) 
      }
-     if(data?.status === 403){
+    else if(data?.status === 403){
       toast.info("Inicia sesión para continuar", {
         position: "top-right",
         autoClose: 5000,

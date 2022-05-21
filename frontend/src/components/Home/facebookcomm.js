@@ -171,7 +171,7 @@ export const  CommentComment = ({commentData,userOwner,haveStar,setHaveStar}) =>
                 <div className="bg-light p-2 row ">
                     <div className="col-1" > </div>
                     <div className="d-flex flex-row align-items-start col-11">
-                        <img className="rounded-circle m-2" src={data?.user.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}}/>
+                        <img className="rounded-circle m-2" src={user?.image || defaultImg} style={{width:"40px",height:"40px",objectFit:"cover"}}/>
                         <textarea value={comment} onChange={(e)=>setComment(e.target.value)} className="form-control ml-1 shadow-none textarea"></textarea>
                         <div className="m-2 align-items-center">
                             <button onClick={handleComentar} className=" colorWhite buttonColorsNav zoom btn btn-outline-primary btn-sm   shadow-none ml-4" type="button">Comentar</button>
